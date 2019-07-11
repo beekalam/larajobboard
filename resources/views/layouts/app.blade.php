@@ -28,16 +28,80 @@
     <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-
+    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 {{--    <script src="{{ asset('js/app.js') }}"></script>--}}
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .ftco-animate {
+            /*opacity: 0;*/
+            /*visibility: hidden;*/
+        }
+        .ftco-animated {
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .category {
+            padding: 0; }
+        .category li {
+            list-style: none;
+            margin-bottom: 0px;
+            font-size: 16px;
+            font-weight: 400; }
+        .category li a {
+            display: block;
+            color: #1a1a1a;
+            border-bottom: 1px solid #ffe5e0;
+            padding: 10px 15px 10px 0;
+            text-decoration: none;
+            position: relative; }
+        .category li a i {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            color: #ff6347;
+            opacity: 0;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease; }
+        .category li a span {
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 15px; }
+        .category li a span.number {
+            font-size: 16px;
+            background: snow;
+            color: #ff6347;
+            padding: 2px 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            border-radius: 5px; }
+        .category li a:hover, .category li a:focus {
+            color: #ff6347;
+            padding-left: 15px;
+            background: #ffe5e0; }
+        .category li a:hover i, .category li a:focus i {
+            right: 15px;
+            opacity: 1; }
+        .category li a:hover span, .category li a:focus span {
+            color: rgba(0, 0, 0, 0.8); }
+        .category li a:hover .number, .category li a:focus .number {
+            color: #ff6347; }
+    </style>
 </head>
 <body id="top">
 
@@ -155,7 +219,7 @@
 </div>
 
 <!-- SCRIPTS -->
-
+@yield('scripts')
 
 </body>
 </html>
