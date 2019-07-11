@@ -13,5 +13,14 @@ class JobController extends Controller
         return view('jobs.index', compact('jobs'));
     }
 
+    /**
+     * @param Job $Job
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Job $Job)
+    {
+        return view('jobs.show', ['job' => $Job]);
+    }
+
 
 }

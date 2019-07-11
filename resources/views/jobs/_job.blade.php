@@ -16,7 +16,7 @@
                $badge = "badge-success";
         @endphp
         <span class="badge {{ $badge }} px-2 py-1 mb-3">{{ ucfirst(str_replace('-',' ',$job->job_type)) }}</span>
-        <h2><a href="job-single.html">{{ $job->title }}</a></h2>
+        <h2><a href="/jobs/{{ $job->id }}">{{ $job->title }}</a></h2>
         <p class="meta">Publisher: <strong>John Stewart</strong> In:
             <strong>{{ ucfirst($job->category->name) }}</strong></p>
     </div>

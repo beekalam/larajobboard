@@ -31,4 +31,17 @@ class ReadJobsTests extends TestCase
              ->assertStatus(200)
              ->assertSee($job->title);
     }
+
+    /** @test */
+    function can_view_single_job()
+    {
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create(['category_id' => $category->id]);
+        $this->get('/jobs/' . $category->id)
+             ->assertStatus(200)
+             ->assertSee($job->title)
+             ->assertSee($job->description)
+             ->assertSee($job->country_name)
+             ->assertSee(ucfirst($job->city_name));
+    }
 }
