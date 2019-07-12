@@ -8,7 +8,7 @@ use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ReadJobsTests extends TestCase
+class ReadJobsTest extends TestCase
 {
     use DatabaseMigrations;
 

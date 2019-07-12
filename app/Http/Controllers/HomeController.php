@@ -28,19 +28,17 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $states = State::all();
-        return view('home.home', compact('categories','states'));
+        return view('home.home', compact('categories', 'states'));
     }
 
     public function search()
     {
         $title = request('search_term');
         $job_type = request('job_type');
-        $location = request('location');
-        $jobs = Job::where('title', 'like', $title)
-                   ->orWhere('job_type', '=', $job_type)
-                   ->paginate(5);
+        $state_name = request('location');
+        $jobs = Job::filter(compact('title', 'job_type', 'state_name'))->paginate(5);
 
-        $jobs->withPath("?title={$title}&job_type={$job_type}&location={$location}");
+        $jobs->withPath("?title={$title}&job_type={$job_type}&location={$state_name}");
         return view('home.search', compact('jobs'));
     }
 }

@@ -10,5 +10,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search');
 Route::resource('/jobs', 'JobController');
+Route::resource('/category','CategoryController');
 Route::get('/cat/{category}', 'JobCategoryController@show');
 
