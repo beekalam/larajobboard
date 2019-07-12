@@ -44,4 +44,14 @@ class ReadJobsTests extends TestCase
              ->assertSee($job->country_name)
              ->assertSee(ucfirst($job->city_name));
     }
+
+    /** @test */
+    function can_search_jobs()
+    {
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
+        $this->get('/search?title=test+title')
+             ->assertStatus(200)
+             ->assertSee('test title');
+    }
 }

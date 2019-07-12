@@ -11,26 +11,21 @@
                 </div>
             </div>
 
-
             <div class="mb-5">
                 <div class="row">
-                    @php $index = 0; @endphp
-                    @foreach($categories as $category)
-                        @if($index == 0 || $index % 6 == 0)
-                            <div class="col-md-3 ftco-animate">
-                                <ul class="category">
-                                    @endif
+                    @foreach(chunk($categories,6) as $chunk)
+                        <div class="col-md-3 ftco-animate">
+                            <ul class="category">
+                                @foreach($chunk as $category)
                                     <li>
                                         <a href="/cat/{{$category->id}}">{{ $category->name }}
                                             <br><span class="number">{{ $category->jobsCount }}</span>
                                             <span>Open position</span><i class="ion-ios-arrow-forward"></i>
                                         </a>
                                     </li>
-                                    @if($index == 0 || $index % 6 == 0)
-                                </ul>
-                            </div>
-                        @endif
-                        @php $index++; @endphp
+                                @endforeach
+                            </ul>
+                        </div>
                     @endforeach
                 </div>
             </div>

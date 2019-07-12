@@ -1,49 +1,52 @@
 <section class="home-section section-hero overlay bg-image" style="background-image: url('/images/hero_1.jpg');"
-             id="home-section">
+         id="home-section">
 
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-12">
-                    <div class="mb-5 text-center">
-                        <h1 class="text-white font-weight-bold">A Powerful Career Website Template</h1>
-                        <p>Find your dream jobs in our powerful career website template.</p>
-                    </div>
-                    <form method="post" class="search-jobs-form">
-                        <div class="row mb-5">
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                <input type="text" class="form-control form-control-lg"
-                                       placeholder="Job title, keywords...">
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                <select class="form-control">
-                                    <option>Anywhere</option>
-                                    <option>San Francisco</option>
-                                    <option>Palo Alto</option>
-                                    <option>New York</option>
-                                    <option>Manhattan</option>
-                                    <option>Ontario</option>
-                                    <option>Toronto</option>
-                                    <option>Kansas</option>
-                                    <option>Mountain View</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                <select class="form-control">
-                                    <option>Part Time</option>
-                                    <option>Full Time</option>
-                                    <option>Freelancer</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search">
-                                    <span class="icon-search icon mr-2"></span>Search Job
-</button>
-                            </div>
-                        </div>
-                    </form>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-12">
+                <div class="mb-5 text-center">
+                    <h1 class="text-white font-weight-bold">A Powerful Career Website Template</h1>
+                    <p>Find your dream jobs in our powerful career website template.</p>
                 </div>
+
+                <form method="get" class="search-jobs-form" action="/search">
+                    @csrf
+                    <div class="row mb-5">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                            <input type="text" class="form-control form-control-lg"
+                                   name="search_term"
+                                   placeholder="Job title, keywords...">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                            <select class="form-control" name="location">
+                                <option value="">Anywhere</option>
+                                @foreach($states as $state)
+                                    <option value="{{ $state->state_name }}">
+                                        {{ $state->state_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                            <select class="form-control" name="job_type">
+                                <option value="part_time">Part Time</option>
+                                <option value="full_time">Full Time</option>
+                                <option value="contract">Contract</option>
+                                <option value="temporary">Temporary</option>
+                                <option value="commission">Commision</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search">
+                                <span class="icon-search icon mr-2"></span>Search Job
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
-    </section>
+</section>

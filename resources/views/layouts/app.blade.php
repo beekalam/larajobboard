@@ -43,6 +43,7 @@
             /*opacity: 0;*/
             /*visibility: hidden;*/
         }
+
         .ftco-animated {
             -webkit-animation-duration: .5s;
             animation-duration: .5s;
@@ -51,19 +52,25 @@
         }
 
         .category {
-            padding: 0; }
+            padding: 0;
+        }
+
         .category li {
             list-style: none;
             margin-bottom: 0px;
             font-size: 16px;
-            font-weight: 400; }
+            font-weight: 400;
+        }
+
         .category li a {
             display: block;
             color: #1a1a1a;
             border-bottom: 1px solid #ffe5e0;
             padding: 10px 15px 10px 0;
             text-decoration: none;
-            position: relative; }
+            position: relative;
+        }
+
         .category li a i {
             position: absolute;
             top: 50%;
@@ -77,10 +84,14 @@
             -o-transition: all 0.3s ease;
             -webkit-transition: all 0.3s ease;
             -ms-transition: all 0.3s ease;
-            transition: all 0.3s ease; }
+            transition: all 0.3s ease;
+        }
+
         .category li a span {
             color: rgba(0, 0, 0, 0.3);
-            font-size: 15px; }
+            font-size: 15px;
+        }
+
         .category li a span.number {
             font-size: 16px;
             background: snow;
@@ -89,18 +100,27 @@
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             -ms-border-radius: 5px;
-            border-radius: 5px; }
+            border-radius: 5px;
+        }
+
         .category li a:hover, .category li a:focus {
             color: #ff6347;
             padding-left: 15px;
-            background: #ffe5e0; }
+            background: #ffe5e0;
+        }
+
         .category li a:hover i, .category li a:focus i {
             right: 15px;
-            opacity: 1; }
+            opacity: 1;
+        }
+
         .category li a:hover span, .category li a:focus span {
-            color: rgba(0, 0, 0, 0.8); }
+            color: rgba(0, 0, 0, 0.8);
+        }
+
         .category li a:hover .number, .category li a:focus .number {
-            color: #ff6347; }
+            color: #ff6347;
+        }
     </style>
 </head>
 <body id="top">
