@@ -48,7 +48,7 @@ $factory->define(Job::class, function (Faker $faker) {
         'experience_requirements'   => str_repeat($faker->sentence(5).PHP_EOL,2),
         'additional_requirements'   => $faker->sentence,
         'benefits'                  => str_repeat($faker->sentence(6).PHP_EOL,6),
-        'apply_instruction'         => $faker->sentence,
+        'apply_instructions'         => $faker->sentence,
         'country_id'                => 1,
         'country_name'              => 'USA',
         'state_id'                  => '1',

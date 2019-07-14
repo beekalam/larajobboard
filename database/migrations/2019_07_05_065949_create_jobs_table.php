@@ -34,14 +34,14 @@ class CreateJobsTable extends Migration
             $table->text('experience_requirements');
             $table->text('additional_requirements');
             $table->text('benefits');
-            $table->text('apply_instruction');
+            $table->text('apply_instructions');
             $table->bigInteger('country_id')->unsigned();
             $table->string('country_name');
             $table->bigInteger('state_id');
             $table->string('state_name');
             $table->string('city_name');
             $table->tinyInteger('experience_required_years');
-            $table->unsignedInteger('views');
+            $table->unsignedInteger('views')->default(0);
             $table->dateTime('deadline');
             $table->tinyInteger('status');
             $table->timestamps();

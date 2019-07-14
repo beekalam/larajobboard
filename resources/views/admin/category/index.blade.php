@@ -10,13 +10,7 @@
                     <h3 class="box-title">Categories</h3>
 
                     <div class="box-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
+                        <a class="btn btn-primary" href="/category/create">Add Category</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -34,8 +28,12 @@
                                 <td>{{$index++}}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
-                                    <button class="btn btn-danger">delete</button>
-                                    <button class="btn btn-primary">edit</button>
+                                    <form method="POST" action="/category/{{ $category->id }}" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">delete</button>
+                                    </form>
+                                    <a href="/category/{{ $category->id }}/edit" class="btn btn-primary">edit</a>
                                 </td>
                             </tr>
                         @endforeach
