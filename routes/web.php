@@ -12,8 +12,13 @@ Route::get('/test', function () {
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search');
+
 Route::resource('/jobs', 'JobController');
 Route::get('/posted', 'JobController@posted');
+
 Route::resource('/category', 'CategoryController');
 Route::get('/cat/{category}', 'JobCategoryController@show');
+
 Route::get('/{country}/states', 'LocationController@states');
+
+Route::resource('/users','UserController');
