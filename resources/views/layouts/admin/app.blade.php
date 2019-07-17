@@ -275,7 +275,7 @@ desired effect
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/jobs/create">Post a job</a></li>
-                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="/posted">Posted Jobs</a></li>
                     </ul>
                 </li>
             </ul>

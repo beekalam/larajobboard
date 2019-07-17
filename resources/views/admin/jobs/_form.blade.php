@@ -170,7 +170,7 @@
     <label for="deadline" class="col-sm-2">Deadline</label>
     <div class="col-sm-10">
         <input type="date" name="deadline" id="deadline"
-               value="{{ old('deadline',$job->deadline) }}"
+               value="{{ old('deadline',$job->deadline->format('Y-m-d')) }}"
                placeholder="Deadline" class="form-control">
         @if($errors->has('deadline'))
             <span class='help-block'>{{ $errors->first('deadline') }}</span>

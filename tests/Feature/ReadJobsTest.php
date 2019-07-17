@@ -54,4 +54,15 @@ class ReadJobsTest extends TestCase
              ->assertStatus(200)
              ->assertSee('test title');
     }
+
+    /** @test */
+    function an_authenticated_user_can_view_posted_jobs()
+    {
+        $user = $this->signIn();
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
+        $this->get('/posted')
+             ->assertSee('test title');
+    }
+
 }

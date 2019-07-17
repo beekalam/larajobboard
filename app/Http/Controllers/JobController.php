@@ -14,9 +14,9 @@ class JobController extends Controller
     /**
      * JobController constructor.
      */
-    public function  __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     public function index()
@@ -82,6 +82,35 @@ class JobController extends Controller
             'status'                    => 0
         ]);
         return redirect('/jobs');
+    }
+
+    public function edit(Job $job)
+    {
+        return view('admin.jobs.edit', [
+            'categories' => category::all(),
+            'job'        => $job,
+            'countries'  => Country::all()
+        ]);
+    }
+
+    public function update(Job $job)
+    {
+        $data = request()->all();
+        $data['category_id'] = $data['category'];
+        $data['country_id'] = $data['country'];
+        $data['state_id'] = $data['state'];
+        unset($data['category']);
+        unset($data['country']);
+        unset($data['state']);
+        $job->update($data);
+        return redirect('/posted');
+    }
+
+    public function posted()
+    {
+        return view("admin.jobs.posted", [
+            'jobs' => Job::where('user_id', auth()->id())->paginate(10)
+        ]);
     }
 
 
