@@ -14,7 +14,7 @@
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Title</th>
-                            <th>status</th>
+                            <th>Status</th>
                             <th>Employer</th>
                             <th>Actions</th>
                         </tr>
@@ -26,9 +26,19 @@
                                 <td></td>
                                 <td>
                                     <a href="/jobs/{{ $job->id }}/edit"
-                                       class="btn">
+                                       class="btn btn-primary">
                                         <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
                                     </a>
+
+
+                                    <form action="/jobs/{{ $job->id }}" method="post" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button href="/jobs/{{ $job->id }}" type="submit"
+                                                class="btn btn-danger">
+                                            <i data-toggle="tooltip" title="Delete" class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

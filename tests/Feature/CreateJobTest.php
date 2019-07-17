@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Category;
 use App\Job;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -19,4 +21,66 @@ class CreateJobTest extends TestCase
         $this->post('/jobs', $job = factory(Job::class)->make()->toArray());
         $this->assertDatabaseHas('jobs', ['title' => $job['title']]);
     }
+
+    /** @test */
+    function authenticated_users_may_edit_jobs()
+    {
+        $user = $this->signIn();
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
+        $arr = $job->toArray();
+        $arr['title'] = 'changed title';
+        $arr['category'] = factory(Category::class)->create()->id;
+        $arr['country'] = 1;
+        $arr['state'] = 1;
+        $this->patch("/jobs/{$job->id}/", $arr)
+             ->assertRedirect('/posted');
+        $this->assertDatabaseHas('jobs', ['title' => 'changed title', 'category_id' => $arr['category']]);
+    }
+
+    /** @test */
+    function authenticated_user_may_delete_jobs()
+    {
+        $this->signIn();
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
+        $this->delete("/jobs/{$job->id}")
+             ->assertRedirect("/posted");
+        $this->assertEquals(0, Job::count());
+    }
+
+    /** @test */
+    function authorized_users_may_only_delete_the_jobs_they_posted()
+    {
+        $this->signIn();
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create([
+            'category_id' => $category->id,
+            'title'       => 'test title',
+            'user_id'     => factory(User::class)->create()->id
+        ]);
+        $this->delete("/jobs/{$job->id}")
+             ->assertStatus(403);
+    }
+
+    /** @test */
+    function authorized_users_may_only_update_the_jobs_they_posted()
+    {
+        $user = $this->signIn();
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create([
+            'category_id' => $category->id,
+            'title'       => 'test title',
+            'user_id'     => factory(User::class)->create()->id
+        ]);
+        $arr = $job->toArray();
+        $arr['title'] = 'changed title';
+        $arr['category'] = factory(Category::class)->create()->id;
+        $arr['country'] = 1;
+        $arr['state'] = 1;
+        $this->patch("/jobs/{$job->id}/", $arr)
+             ->assertStatus(403);
+    }
+
+
 }

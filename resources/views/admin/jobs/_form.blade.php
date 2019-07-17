@@ -41,7 +41,7 @@
 </div>
 
 <div class="form-group @error('cycle') has-error @enderror">
-    <label for="cycle" class="col-sm-2">cycle</label>
+    <label for="cycle" class="col-sm-2">Cycle</label>
     <div class="col-sm-10">
         <select name="cycle" id="cycle" class="form-control">
             <option value="">Select a cycle</option>
@@ -58,7 +58,7 @@
 </div>
 
 <div class="form-group @error('salary') has-error @enderror">
-    <label for="salary" class="col-sm-2">salary</label>
+    <label for="salary" class="col-sm-2">Salary</label>
     <div class="col-sm-10">
         <input type="number" name="salary" id="salary"
                value="{{ old('salary',$job->salary) }}"
@@ -82,7 +82,7 @@
 </div>
 
 <div class="form-group @error('currency') has-error @enderror">
-    <label for="currency" class="col-sm-2">currency</label>
+    <label for="currency" class="col-sm-2">Currency</label>
     <div class="col-sm-10">
         <select name="currency" id="currency" class="form-control">
             <option value="">Select a currency</option>
@@ -116,7 +116,7 @@
 </div>
 
 <div class="form-group @error('experience_level') has-error @enderror">
-    <label for="experience_level" class="col-sm-2">experience_level</label>
+    <label for="experience_level" class="col-sm-2">Experience level</label>
     <div class="col-sm-10">
         <select name="experience_level" id="experience_level" class="form-control">
             <option value="">Select a experience_level</option>
@@ -170,7 +170,7 @@
     <label for="deadline" class="col-sm-2">Deadline</label>
     <div class="col-sm-10">
         <input type="date" name="deadline" id="deadline"
-               value="{{ old('deadline',$job->deadline->format('Y-m-d')) }}"
+               value="{{ old('deadline',isset($job->deadline) ? $job->deadline->format('Y-m-d') : '') }}"
                placeholder="Deadline" class="form-control">
         @if($errors->has('deadline'))
             <span class='help-block'>{{ $errors->first('deadline') }}</span>

@@ -95,6 +95,7 @@ class JobController extends Controller
 
     public function update(Job $job)
     {
+        $this->authorize('update', $job);
         $data = request()->all();
         $data['category_id'] = $data['category'];
         $data['country_id'] = $data['country'];
@@ -104,6 +105,13 @@ class JobController extends Controller
         unset($data['state']);
         $job->update($data);
         return redirect('/posted');
+    }
+
+    public function destroy(Job $job)
+    {
+        $this->authorize('delete', $job);
+        $job->delete();
+        return redirect("/posted");
     }
 
     public function posted()
