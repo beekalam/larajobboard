@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateJobsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -17,33 +18,34 @@ class CreateJobsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->string('position');
-            $table->bigInteger('category_id')->unsigned();
-            $table->unsignedInteger('salary');
-            $table->unsignedInteger('salary_max');
-            $table->enum('cycle', ['monthly', 'yearly', 'weekly', 'daily', 'hourly']);
-            $table->string('currency');
-            $table->enum('gender', ['male', 'female', 'any']);
-            $table->enum('job_type', ['full_time', 'part_time', 'contract', 'temporary', 'commission', 'internship']);
-            $table->enum('experience_level', ['mid', 'entry', 'senior']);
+            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->unsignedInteger('salary')->nullable()->nullable();
+            $table->unsignedInteger('salary_max')->nullable();
+            $table->enum('cycle', ['monthly', 'yearly', 'weekly', 'daily', 'hourly'])->nullable();
+            $table->string('currency')->nullable();
+            $table->enum('gender', ['male', 'female', 'any'])->nullable();
+            $table->enum('job_type', ['full_time', 'part_time', 'contract', 'temporary', 'commission', 'internship'])->nullable();
+            $table->enum('experience_level', ['mid', 'entry', 'senior'])->nullable();
             $table->text('description');
-            $table->text('skills');
-            $table->text('responsibilities');
-            $table->text('educational_requirements');
-            $table->text('experience_requirements');
-            $table->text('additional_requirements');
-            $table->text('benefits');
-            $table->text('apply_instructions');
-            $table->bigInteger('country_id')->unsigned();
-            $table->string('country_name');
-            $table->bigInteger('state_id');
-            $table->string('state_name');
-            $table->string('city_name');
-            $table->tinyInteger('experience_required_years');
+            $table->text('skills')->nullable();
+            $table->text('responsibilities')->nullable();
+            $table->text('educational_requirements')->nullable();
+            $table->text('experience_requirements')->nullable();
+            $table->text('additional_requirements')->nullable();
+            $table->text('benefits')->nullable();
+            $table->text('apply_instructions')->nullable();
+            $table->bigInteger('country_id')->unsigned()->nullable();
+            $table->string('country_name')->nullable();
+            $table->bigInteger('state_id')->nullable();
+            $table->string('state_name')->nullable();
+            $table->string('city_name')->nullable();
+            $table->tinyInteger('experience_required_years')->nullable();
             $table->unsignedInteger('views')->default(0);
             $table->dateTime('deadline');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->nullable();
+
             $table->timestamps();
         });
     }

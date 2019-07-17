@@ -3,11 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Country;
+use App\Http\Requests\JobRequest;
 use App\Job;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+
+    /**
+     * JobController constructor.
+     */
+    public function  __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $jobs = Job::all();
@@ -25,19 +36,27 @@ class JobController extends Controller
 
     public function create()
     {
-        $job = new Job();
-        $categories = Category::all();
-        return view('admin.jobs.create',compact('job','categories'));
+        return view('admin.jobs.create', [
+            'categories' => category::all(),
+            'job'        => new Job(),
+            'countries'  => Country::all()
+        ]);
     }
 
-    public function store()
+    public function store(JobRequest $request)
     {
+        // dd(
+        //     collect($request->all())->filter(function($v,$k){
+        //         return !is_null($v);
+        //     })->forget('_token')->all()
+        //
+        // );
         Job::create([
             'user_id'                   => auth()->id(),
             'title'                     => request('title'),
             'slug'                      => str_slug(request('title')),
             'position'                  => request('position'),
-            'category_id'               => request('category_id'),
+            'category_id'               => request('category'),
             'salary'                    => request('salary'),
             'salary_max'                => request('salary_max'),
             'cycle'                     => request('cycle'),
