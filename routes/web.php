@@ -7,7 +7,10 @@ Route::get('/test', function () {
 });
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/select-register','HomeController@register');
+Route::get('/select-register', 'HomeController@register');
+Route::get('/employer-register', 'UserRegisterController@EmployerRegister');
+Route::get('/job-seeker-register', 'UserRegisterController@JobSeekerRegister');
+
 Route::get('/search', 'HomeController@search');
 
 Route::resource('/jobs', 'JobController');
@@ -18,4 +21,4 @@ Route::get('/cat/{category}', 'JobCategoryController@show');
 
 Route::get('/{country}/states', 'LocationController@states');
 
-Route::resource('/users','UserController');
+Route::resource('/users', 'UserController');

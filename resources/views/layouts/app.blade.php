@@ -155,6 +155,7 @@
                         <li><a href="blog.html">Blog</a></li>
                         @guest
                             <li><a href="/select-register">Register</a></li>
+                            <li><a href="/login">Login</a></li>
                         @else
                             <li><a href="/jobs/create">Post Job</a></li>
                         @endguest
