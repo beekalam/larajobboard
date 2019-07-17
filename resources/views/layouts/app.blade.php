@@ -5,6 +5,8 @@
     {{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset('css/custom-bs.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('AdminLTE-2.4.12/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
@@ -151,6 +153,11 @@
                         <li><a href="about.html">About</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="blog.html">Blog</a></li>
+                        @guest
+                            <li><a href="/select-register">Register</a></li>
+                        @else
+                            <li><a href="/jobs/create">Post Job</a></li>
+                        @endguest
                         <li class="d-lg-none"><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </nav>
@@ -168,13 +175,6 @@
         </div>
     </header>
 
-    <!-- HOME -->
-    {{--    @include('layouts._search')--}}
-    {{--    @include('layouts._stats')--}}
-    {{--    @include('layouts._jobs')--}}
-    {{--    @include('layouts._candidates')--}}
-    {{--    @include('layouts._testimonials')--}}
-    {{--    @include('layouts._signup')--}}
     @yield('content')
 
     <footer class="site-footer">

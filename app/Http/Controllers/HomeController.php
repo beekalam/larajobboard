@@ -41,4 +41,9 @@ class HomeController extends Controller
         $jobs->withPath("?title={$title}&job_type={$job_type}&location={$state_name}");
         return view('home.search', compact('jobs'));
     }
+
+    public function register()
+    {
+       return view('home.select_register');
+    }
 }

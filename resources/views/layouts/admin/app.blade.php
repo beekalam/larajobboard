@@ -220,8 +220,13 @@ desired effect
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="/logout"
+                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                       class="btn btn-default btn-flat">Sign out</a>
                                 </div>
+                                <form action="/logout" method="post" id="logout-form">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </li>
@@ -234,9 +239,9 @@ desired effect
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-@include('layouts.admin._sidebar')
+    @include('layouts.admin._sidebar')
 
-<!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
