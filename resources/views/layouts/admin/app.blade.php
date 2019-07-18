@@ -239,9 +239,9 @@ desired effect
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    @include('layouts.admin._sidebar')
+@include('layouts.admin._sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -257,7 +257,8 @@ desired effect
         <!-- Main content -->
         <section class="content container-fluid">
 
-            <!--------------------------
+        @include('layouts.admin._flash')
+        <!--------------------------
               | Your Page Content Here |
               -------------------------->
             @yield('content')

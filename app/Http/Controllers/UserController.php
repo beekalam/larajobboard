@@ -112,7 +112,7 @@ class UserController extends Controller
             $state = State::find($request->state);
             $state_name = $state->state_name;
         }
-        $path = '';
+        $filename = '';
         if ($request->hasFile('logo')) {
             $path = Storage::putFile('public/company_logo', $request->file('logo'));
             $filename = pathinfo($path, PATHINFO_BASENAME);
