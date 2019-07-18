@@ -44,7 +44,7 @@ class CreateJobsTable extends Migration
             $table->tinyInteger('experience_required_years')->nullable();
             $table->unsignedInteger('views')->default(0);
             $table->dateTime('deadline');
-            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('status')->nullable()->comment('pending:0,approved:1,blocked:2');
 
             $table->timestamps();
         });

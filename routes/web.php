@@ -25,4 +25,6 @@ Route::resource('/users', 'UserController');
 Route::get('/profile/{user}','UserController@profile');
 Route::put('/update-profile/{user}','UserController@updateProfile');
 
-Route::get('/admin/jobs','AdminJobController@index');
+Route::get('/admin/jobs/pending','AdminJobController@Pending');
+Route::get('/admin/jobs/approved','AdminJobController@Approved');
+Route::get('/admin/jobs/blocked','AdminJobController@Blocked');

@@ -56,7 +56,9 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/admin/jobs?filter=pending">Pending</a></li>
+                    <li><a href="/admin/jobs/pending">Pending</a></li>
+                    <li><a href="/admin/jobs/approved">Approved</a></li>
+                    <li><a href="/admin/jobs/blocked">Blocked</a></li>
                 </ul>
             </li>
         </ul>
