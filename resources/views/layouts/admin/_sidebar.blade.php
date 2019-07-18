@@ -34,7 +34,8 @@
             <li class="active"><a href="/category"><i class="fa fa-link"></i> <span>Categories</span></a></li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Employer</span>
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Employer</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -46,6 +47,18 @@
                 </ul>
             </li>
             <li><a href="/users"><i class="fa fa-link"></i> <span>Users</span></a></li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Jobs</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/jobs?filter=pending">Pending</a></li>
+                </ul>
+            </li>
         </ul>
 
         <!-- /.sidebar-menu -->

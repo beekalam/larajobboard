@@ -24,3 +24,5 @@ Route::get('/{country}/states', 'LocationController@states');
 Route::resource('/users', 'UserController');
 Route::get('/profile/{user}','UserController@profile');
 Route::put('/update-profile/{user}','UserController@updateProfile');
+
+Route::get('/admin/jobs','AdminJobController@index');

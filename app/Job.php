@@ -37,15 +37,20 @@ class Job extends Model
         if (isset($params['job_type']) && !empty($params['job_type'])) {
             $jobs = $jobs->orWhere('job_type', '=', $params['job_type']);
         }
-        if(isset($params['title']) && !empty($params['title'])){
-            $jobs = $jobs->orWhere('title','like',$params['title']);
+        if (isset($params['title']) && !empty($params['title'])) {
+            $jobs = $jobs->orWhere('title', 'like', $params['title']);
         }
 
-        if(isset($params['state_name']) && !empty($params['state_name'])){
-            $jobs = $jobs->orWhere('state_name','like',$params['state_name']);
+        if (isset($params['state_name']) && !empty($params['state_name'])) {
+            $jobs = $jobs->orWhere('state_name', 'like', $params['state_name']);
         }
 
         return $jobs;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
