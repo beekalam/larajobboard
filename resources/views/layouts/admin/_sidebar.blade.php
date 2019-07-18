@@ -42,6 +42,7 @@
                 <ul class="treeview-menu">
                     <li><a href="/jobs/create">Post a job</a></li>
                     <li><a href="/posted">Posted Jobs</a></li>
+                    <li><a href="/profile/{{ auth()->id() }}">Profile</a></li>
                 </ul>
             </li>
             <li><a href="/users"><i class="fa fa-link"></i> <span>Users</span></a></li>

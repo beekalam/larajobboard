@@ -22,3 +22,5 @@ Route::get('/cat/{category}', 'JobCategoryController@show');
 Route::get('/{country}/states', 'LocationController@states');
 
 Route::resource('/users', 'UserController');
+Route::get('/profile/{user}','UserController@profile');
+Route::put('/update-profile/{user}','UserController@updateProfile');
