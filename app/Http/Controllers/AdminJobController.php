@@ -33,4 +33,19 @@ class AdminJobController extends Controller
             'jobs' => Job::where('status', $types[$type])->paginate(10)
         ]);
     }
+
+    /**
+     * @param Job $job
+     */
+    public function Approve(Job $job)
+    {
+        $job->update(['status' => 1]);
+        return redirect('admin/jobs/approved')->with('success', 'Successfully approved.');
+    }
+
+    public function Block(Job $job)
+    {
+        $job->update(['status' => 2]);
+        return redirect('admin/jobs/blocked')->with('success', 'Successfully blocked.');
+    }
 }

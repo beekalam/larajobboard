@@ -28,3 +28,5 @@ Route::put('/update-profile/{user}','UserController@updateProfile');
 Route::get('/admin/jobs/pending','AdminJobController@Pending');
 Route::get('/admin/jobs/approved','AdminJobController@Approved');
 Route::get('/admin/jobs/blocked','AdminJobController@Blocked');
+Route::post('/admin/jobs/{job}/approve','AdminJobController@Approve');
+Route::post('/admin/jobs/{job}/block','AdminJobController@Block');

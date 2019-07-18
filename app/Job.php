@@ -53,4 +53,19 @@ class Job extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function isApproved()
+    {
+        return $this->status == '1';
+    }
+
+    public function isPending()
+    {
+        return $this->status == '0';
+    }
+
+    public function isBlocked()
+    {
+        return $this->status == '2';
+    }
+
 }

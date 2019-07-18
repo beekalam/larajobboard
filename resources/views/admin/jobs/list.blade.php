@@ -22,6 +22,50 @@
                                 <td>{{ $job->status }}</td>
                                 <td>{{ $job->user->name }}</td>
                                 <td>
+                                    <a href="{{ '/jobs/' . $job->id }}"
+                                       class="btn btn-primary" target="_blank">
+                                        <i data-toggle="tooltip" title="view" class="fa fa-eye"></i>
+                                    </a>
+
+                                    <a href="/jobs/{{ $job->id }}/edit"
+                                       class="btn btn-warning" target="_blank">
+                                        <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
+                                    </a>
+
+                                    @if($job->isPending())
+                                        <form method="POST"
+                                              action="/admin/jobs/{{ $job->id }}/approve"
+                                              class="form" style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                    class="btn btn-success" target="_blank">
+                                                <i data-toggle="tooltip" title="Approve" class="fa fa-check"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                    @if(!$job->isBlocked())
+                                        <form method="POST"
+                                              action="/admin/jobs/{{ $job->id }}/block"
+                                              class="form" style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                    class="btn btn-warning" target="_blank">
+                                                <i data-toggle="tooltip" title="Block" class="fa fa-ban"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                    <form method="POST"
+                                          action="/jobs/{{ $job->id }}"
+                                          class="form" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="btn btn-danger" target="_blank">
+                                            <i data-toggle="tooltip" title="Block" class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
 
                                 </td>
                             </tr>
