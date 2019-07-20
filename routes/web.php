@@ -22,11 +22,13 @@ Route::get('/cat/{category}', 'JobCategoryController@show');
 Route::get('/{country}/states', 'LocationController@states');
 
 Route::resource('/users', 'UserController');
-Route::get('/profile/{user}','UserController@profile');
-Route::put('/update-profile/{user}','UserController@updateProfile');
+Route::get('/profile/{user}', 'UserController@profile');
+Route::put('/update-profile/{user}', 'UserController@updateProfile');
 
-Route::get('/admin/jobs/pending','AdminJobController@Pending');
-Route::get('/admin/jobs/approved','AdminJobController@Approved');
-Route::get('/admin/jobs/blocked','AdminJobController@Blocked');
-Route::post('/admin/jobs/{job}/approve','AdminJobController@Approve');
-Route::post('/admin/jobs/{job}/block','AdminJobController@Block');
+Route::get('/admin/jobs/pending', 'AdminJobController@Pending');
+Route::get('/admin/jobs/approved', 'AdminJobController@Approved');
+Route::get('/admin/jobs/blocked', 'AdminJobController@Blocked');
+Route::post('/admin/jobs/{job}/approve', 'AdminJobController@Approve');
+Route::post('/admin/jobs/{job}/block', 'AdminJobController@Block');
+
+Route::get('/dashboard','DashboardController@index');

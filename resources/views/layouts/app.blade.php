@@ -5,6 +5,10 @@
     {{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset('css/custom-bs.css') }}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('AdminLTE-2.4.12/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
@@ -14,10 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -31,7 +32,7 @@
     <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/custom.js' . "?id=" . uniqid(true)) }}"></script>
 {{--    <script src="{{ asset('js/app.js') }}"></script>--}}
 
 <!-- Fonts -->

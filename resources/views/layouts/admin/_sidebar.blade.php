@@ -31,8 +31,8 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
             <li class="active"><a href="/category"><i class="fa fa-link"></i> <span>Categories</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i> <span>Employer</span>
