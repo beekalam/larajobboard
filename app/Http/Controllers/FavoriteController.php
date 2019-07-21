@@ -16,10 +16,12 @@ class FavoriteController extends Controller
     public function favorite(Job $job)
     {
         $job->favorite();
+        return back();
     }
 
     public function unfavorite(Job $job)
     {
         $job->unfavorite();
+        return back();
     }
 }

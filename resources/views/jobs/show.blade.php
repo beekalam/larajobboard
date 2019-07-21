@@ -29,8 +29,23 @@
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="btn btn-block btn-light btn-md">
-                                <span class="icon-heart-o mr-2 text-danger"></span>Save Job</a>
+                            <a href="#"
+                               onclick="event.preventDefault();document.getElementById('favorite-form').submit()"
+                               class="btn btn-block btn-light btn-md">
+                                @if($job->is_favorited)
+                                    <span class="icon-heart mr-2 text-danger"></span>Save Job
+                                @else
+                                    <span class="icon-heart-o mr-2 text-danger"></span>Save Job
+                                @endif
+                            </a>
+                            <form id="favorite-form"
+                                  method="POST"
+                                  action="/jobs/{{ $job->id }}/{{$job->is_favorited ? 'unfavorite':'favorite'}}">
+                                @csrf
+                                @if($job->is_favorited)
+                                    @method('DELETE')
+                                @endif
+                            </form>
                         </div>
                         <div class="col-6">
                             <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
