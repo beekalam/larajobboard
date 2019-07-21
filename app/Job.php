@@ -68,4 +68,36 @@ class Job extends Model
         return $this->status == '2';
     }
 
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favorited');
+    }
+
+    public function favorite()
+    {
+        Favorite::create([
+            'favorited_id'   => $this->id,
+            'favorited_type' => Job::class,
+            'user_id'        => auth()->id()
+        ]);
+    }
+
+    public function unfavorite()
+    {
+        Favorite::where([
+            'favorited_id' => $this->id,
+            'user_id'      => auth()->id()
+        ])->delete();
+    }
+
+    public function isFavorited()
+    {
+        return !!$this->favorites->where('user_id', auth()->id())->count();
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
+
 }

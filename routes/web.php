@@ -3,7 +3,12 @@
 Auth::routes();
 
 Route::get('/test', function () {
-    dd(\App\Country::where('id', 3)->first()->states()->get()->toArray());
+    error_log('in test');
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        error_log("id: " . $id);
+    }
+    return date('Y-m-d H:i:s', time());
 });
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -14,6 +19,8 @@ Route::get('/job-seeker-register', 'UserRegisterController@JobSeekerRegister');
 Route::get('/search', 'HomeController@search');
 
 Route::resource('/jobs', 'JobController');
+Route::post('/jobs/{job}/favorite','FavoriteController@favorite');
+Route::delete('/jobs/{job}/unfavorite','FavoriteController@unfavorite');
 Route::get('/posted', 'JobController@posted');
 
 Route::resource('/category', 'CategoryController');
@@ -32,3 +39,4 @@ Route::post('/admin/jobs/{job}/approve', 'AdminJobController@Approve');
 Route::post('/admin/jobs/{job}/block', 'AdminJobController@Block');
 
 Route::get('/dashboard','DashboardController@index');
+
