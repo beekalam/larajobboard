@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Job;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -26,5 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        \View::composer('*', function ($view) {
+            $view->with('pending', Job::Pending()->count());
+            $view->with('blocked', Job::Blocked()->count());
+            $view->with('approved', Job::Approved()->count());
+        });
     }
 }

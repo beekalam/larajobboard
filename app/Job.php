@@ -100,4 +100,19 @@ class Job extends Model
         return $this->isFavorited();
     }
 
+    public function scopePending($query)
+    {
+        return $query->where('status', '0');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('status', '1');
+    }
+
+    public function scopeBlocked($query)
+    {
+        return $query->where('status', '2');
+    }
+
 }

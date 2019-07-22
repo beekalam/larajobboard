@@ -6,7 +6,7 @@ use App\Job;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class FavoriteTest extends TestCase
+class FavoritesTest extends TestCase
 {
     use DatabaseMigrations;
 

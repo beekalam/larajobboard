@@ -56,9 +56,29 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/admin/jobs/pending">Pending</a></li>
-                    <li><a href="/admin/jobs/approved">Approved</a></li>
-                    <li><a href="/admin/jobs/blocked">Blocked</a></li>
+                    <li>
+                        <a href="/admin/jobs/pending">
+                            <span>Pending</span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-blue">{{ $pending }}</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/jobs/approved">
+                            <span>Approved </span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-green">{{ $approved }}</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li><a href="/admin/jobs/blocked">
+                            <span>Blocked </span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-red">{{ $blocked }}</small>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
