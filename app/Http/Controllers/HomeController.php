@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Job;
 use App\State;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,9 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $states = State::all();
-        return view('home.home', compact('categories', 'states'));
+        return view('home.home', [
+            'categories'     => Category::getAllCategories(),
+            'states'         => State::all(),
+            'user_count'     => User::userCount(),
+            'employer_count' => User::employerCount(),
+            'posted_jobs'    => Job::PostedJobs(),
+        ]);
     }
 
     public function search()

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cache;
 
 class Category extends Model
 {
@@ -17,5 +18,12 @@ class Category extends Model
     public function getJobsCountAttribute()
     {
         return $this->jobs->count();
+    }
+
+    public static function getAllCategories()
+    {
+        return Cache::remember('all_categories', now()->addMinute(2), function () {
+            return Category::all();
+        });
     }
 }

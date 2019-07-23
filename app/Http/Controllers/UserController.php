@@ -80,7 +80,7 @@ class UserController extends Controller
         ]);
 
         $user->update(request()->all());
-        return redirect('/users')->with('message', 'User updated successfully.');
+        return redirect('/users')->with('success', 'User updated successfully.');
     }
 
     /**

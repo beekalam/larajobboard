@@ -11,14 +11,14 @@
 
             <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                 <div class="d-flex align-items-center justify-content-center mb-2">
-                    <strong class="number" data-number="1930">0</strong>
+                    <strong class="number" data-number="{{ $user_count }}">0</strong>
                 </div>
                 <span class="caption">Candidates</span>
             </div>
 
             <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                 <div class="d-flex align-items-center justify-content-center mb-2">
-                    <strong class="number" data-number="54">0</strong>
+                    <strong class="number" data-number="{{ $posted_jobs }}">0</strong>
                 </div>
                 <span class="caption">Jobs Posted</span>
             </div>
@@ -32,7 +32,7 @@
 
             <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                 <div class="d-flex align-items-center justify-content-center mb-2">
-                    <strong class="number" data-number="550">0</strong>
+                    <strong class="number" data-number="{{ $employer_count }}">0</strong>
                 </div>
                 <span class="caption">Companies</span>
             </div>

@@ -2,7 +2,9 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
+use Cache;
 
 class Job extends Model
 {
@@ -113,6 +115,13 @@ class Job extends Model
     public function scopeBlocked($query)
     {
         return $query->where('status', '2');
+    }
+
+    public static function PostedJobs()
+    {
+        return Cache::remember('posted_jobs', now()->addMinute(2), function(){
+            return Job::where('status',1)->count();
+        });
     }
 
 }

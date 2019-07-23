@@ -2,9 +2,11 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cache;
 
 class User extends Authenticatable
 {
@@ -64,5 +66,20 @@ class User extends Authenticatable
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+
+    public static function userCount()
+    {
+        return Cache::remember('employer_count', now()->addMinute(2), function () {
+            return User::where('user_type', 'user')->count();
+        });
+    }
+
+    public static function employerCount()
+    {
+        return Cache::remember('user_count', now()->addMinute(2), function () {
+            return User::where('user_type', 'employer')->count();
+        });
     }
 }
