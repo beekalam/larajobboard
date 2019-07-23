@@ -30,7 +30,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -52,7 +51,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -63,7 +62,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -71,11 +70,17 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->authorize('update', $user);
+        $this->validate($request, [
+            'name'  => 'required',
+            'email' => "required|unique:users,email," . $user->id
+        ]);
+
+        $user->update(request()->all());
+        return redirect('/users')->with('message', 'User updated successfully.');
     }
 
     /**

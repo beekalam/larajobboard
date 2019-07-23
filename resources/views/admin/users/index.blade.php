@@ -22,7 +22,12 @@
                                 <td>{{ $user->name }}</td>
                                 <td> {{ $user->email }}</td>
                                 <td>
-
+                                    <a href="/users/{{$user->id}}" class="btn btn-primary">
+                                        <i data-toggle="tooltip" title="view" class="fa fa-eye"></i>
+                                    </a>
+                                    <a href="/users/{{ $user->id }}/edit" class="btn btn-warning">
+                                        <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
