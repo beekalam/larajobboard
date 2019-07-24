@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         return view('home.home', [
             'categories'     => Category::getAllCategories(),
-            'states'         => State::all(),
+            'states'         => State::getAllStates(),
             'user_count'     => User::userCount(),
             'employer_count' => User::employerCount(),
             'posted_jobs'    => Job::PostedJobs(),
