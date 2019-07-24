@@ -32,7 +32,9 @@
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-            <li class="active"><a href="/category"><i class="fa fa-link"></i> <span>Categories</span></a></li>
+            @if(auth()->user()->isAdmin())
+                <li class="active"><a href="/category"><i class="fa fa-link"></i> <span>Categories</span></a></li>
+            @endif
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i> <span>Employer</span>
@@ -46,41 +48,44 @@
                     <li><a href="/profile/{{ auth()->id() }}">Profile</a></li>
                 </ul>
             </li>
-            <li><a href="/users"><i class="fa fa-link"></i> <span>Users</span></a></li>
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-link"></i> <span>Jobs</span>
-                    <span class="pull-right-container">
+            @if(auth()->user()->isAdmin())
+                <li><a href="/users"><i class="fa fa-link"></i> <span>Users</span></a></li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Jobs</span>
+                        <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="/admin/jobs/pending">
-                            <span>Pending</span>
-                            <span class="pull-right-container">
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/admin/jobs/pending">
+                                <span>Pending</span>
+                                <span class="pull-right-container">
                                 <small class="label pull-right bg-blue">{{ $pending }}</small>
                             </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/jobs/approved">
-                            <span>Approved </span>
-                            <span class="pull-right-container">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/jobs/approved">
+                                <span>Approved </span>
+                                <span class="pull-right-container">
                                 <small class="label pull-right bg-green">{{ $approved }}</small>
                             </span>
-                        </a>
-                    </li>
-                    <li><a href="/admin/jobs/blocked">
-                            <span>Blocked </span>
-                            <span class="pull-right-container">
+                            </a>
+                        </li>
+                        <li><a href="/admin/jobs/blocked">
+                                <span>Blocked </span>
+                                <span class="pull-right-container">
                                 <small class="label pull-right bg-red">{{ $blocked }}</small>
                             </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
         </ul>
 
         <!-- /.sidebar-menu -->

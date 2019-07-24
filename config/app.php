@@ -39,7 +39,8 @@ return [
     |
     */
 
-    'debug' => array_key_exists('REMOTE_ADDR', $_SERVER) ? in_array($_SERVER['REMOTE_ADDR'], ['192.168.1.40', '192.168.1.40']) : true,
+    'debug' => array_key_exists('REMOTE_ADDR', $_SERVER) ? in_array($_SERVER['REMOTE_ADDR'],
+        ['192.168.1.40', '192.168.1.40', '192.168.1.200']) : true,
     // 'debug' => env('APP_DEBUG', false),
 
     /*

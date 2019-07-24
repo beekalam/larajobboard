@@ -82,4 +82,15 @@ class User extends Authenticatable
             return User::where('user_type', 'employer')->count();
         });
     }
+
+    public function isAdmin()
+    {
+        return $this->user_type == 'admin';
+    }
+
+    public function isEmployer()
+    {
+        return $this->user_type == 'employer';
+    }
+
 }

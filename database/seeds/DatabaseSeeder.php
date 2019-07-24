@@ -14,16 +14,22 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         factory(User::class)->create([
-            "email"     => "beekalam@gmail.com",
+            "email"     => "admin@demo.com",
             "password"  => bcrypt('secret'),
             'user_type' => 'admin'
         ]);
 
         factory(User::class)->create([
-            'email'     => 'beekalam2@gmail.com',
+            'email'     => 'employer@demo.com',
             'password'  => bcrypt('secret'),
             'user_type' => 'employer',
-            'logo' => '7MqwXm0AOHA8aMgWQspc8QdPahN1Bw1FSdiP9Re2.jpeg'
+            'logo'      => '7MqwXm0AOHA8aMgWQspc8QdPahN1Bw1FSdiP9Re2.jpeg'
+        ]);
+
+        factory(User::class)->create([
+            'email'     => 'user@demo.com',
+            'password'  => bcrypt('secret'),
+            'user_type' => 'user',
         ]);
 
         $this->call(CategoryTableSeeder::class);

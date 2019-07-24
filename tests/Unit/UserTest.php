@@ -27,4 +27,19 @@ class UserTest extends TestCase
         ]);
         $this->assertEquals(2, User::employerCount());
     }
+
+    /** @test */
+    function can_tell_if_user_is_admin()
+    {
+        $this->signIn(['user_type' => 'admin']);
+        $this->assertTrue(auth()->user()->isAdmin());
+    }
+
+    /** @test */
+    function can_tell_if_user_is_employer()
+    {
+        $this->signIn(['user_type' => 'employer']);
+        $this->assertFalse(auth()->user()->isAdmin());
+        $this->assertTrue(auth()->user()->isEmployer());
+    }
 }
