@@ -54,9 +54,7 @@
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-link"></i> <span>Jobs</span>
-                        <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+                        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span>
                     </a>
                     <ul class="treeview-menu">
                         <li>
@@ -83,6 +81,21 @@
                             </a>
                         </li>
                     </ul>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-edit"></i> <span>CMS</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu" style="">
+                        <li class=""><a href="/pages"><i class="fa fa-circle-o"></i> Pages</a>
+                        </li>
+                        <li><a href="/posts"><i class="fa fa-circle-o"></i> Posts</a></li>
+                    </ul>
+                </li>
+
                 </li>
             @endif
             <li>

@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('page_header') Change Password @endsection
 @section('content')
     <div class="row">
         <div class="col-sm-6">
