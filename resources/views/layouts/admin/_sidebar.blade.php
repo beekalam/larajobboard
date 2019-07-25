@@ -85,6 +85,12 @@
                     </ul>
                 </li>
             @endif
+            <li>
+                <a href="/change-password/{{ auth()->user()->id }}">
+                    <i class="fa fa-lock"></i>
+                    <span>Change Password</span>
+                </a>
+            </li>
 
         </ul>
 

@@ -33,6 +33,8 @@ Route::get('/{country}/states', 'LocationController@states');
 Route::resource('/users', 'UserController');
 Route::get('/profile/{user}', 'UserController@profile');
 Route::put('/update-profile/{user}', 'UserController@updateProfile');
+Route::get('/change-password/{user}','ChangePasswordController@changePassword');
+Route::post('/change-password/{user}','ChangePasswordController@updatePassword');
 
 Route::get('/admin/jobs/pending', 'AdminJobController@Pending');
 Route::get('/admin/jobs/approved', 'AdminJobController@Approved');
