@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Larajobs'),
+    'name' => env('APP_NAME', 'LaraJobBoard'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     */
 
     'debug' => array_key_exists('REMOTE_ADDR', $_SERVER) ? in_array($_SERVER['REMOTE_ADDR'],
-        ['192.168.1.40', '192.168.1.40', '192.168.1.200']) : true,
+        ['127.0.0.1','192.168.1.40', '192.168.1.40', '192.168.1.200']) : true,
     // 'debug' => env('APP_DEBUG', false),
 
     /*

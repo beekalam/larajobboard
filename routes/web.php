@@ -6,7 +6,7 @@ Route::get('/test', function () {
     error_log('in test');
     // error_log($_SERVER['REMOTE_ADDR']);
     // error_log(print_r($_SERVER,true));
-    if(isset($_GET['id'])){
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         error_log("id: " . $id);
     }
@@ -21,8 +21,8 @@ Route::get('/job-seeker-register', 'UserRegisterController@JobSeekerRegister');
 Route::get('/search', 'HomeController@search');
 
 Route::resource('/jobs', 'JobController');
-Route::post('/jobs/{job}/favorite','FavoriteController@favorite');
-Route::delete('/jobs/{job}/unfavorite','FavoriteController@unfavorite');
+Route::post('/jobs/{job}/favorite', 'FavoriteController@favorite');
+Route::delete('/jobs/{job}/unfavorite', 'FavoriteController@unfavorite');
 Route::get('/posted', 'JobController@posted');
 
 Route::resource('/category', 'CategoryController');
@@ -33,8 +33,8 @@ Route::get('/{country}/states', 'LocationController@states');
 Route::resource('/users', 'UserController');
 Route::get('/profile/{user}', 'UserController@profile');
 Route::put('/update-profile/{user}', 'UserController@updateProfile');
-Route::get('/change-password/{user}','ChangePasswordController@changePassword');
-Route::post('/change-password/{user}','ChangePasswordController@updatePassword');
+Route::get('/change-password/{user}', 'ChangePasswordController@changePassword');
+Route::post('/change-password/{user}', 'ChangePasswordController@updatePassword');
 
 Route::get('/admin/jobs/pending', 'AdminJobController@Pending');
 Route::get('/admin/jobs/approved', 'AdminJobController@Approved');
@@ -42,7 +42,7 @@ Route::get('/admin/jobs/blocked', 'AdminJobController@Blocked');
 Route::post('/admin/jobs/{job}/approve', 'AdminJobController@Approve');
 Route::post('/admin/jobs/{job}/block', 'AdminJobController@Block');
 
-Route::get('/dashboard','DashboardController@index');
+Route::get('/dashboard', 'DashboardController@index');
 
-Route::get('/pages','PageController@index');
-Route::get('/posts','BlogController@index');
+Route::get('/pages', 'PageController@index');
+Route::get('/posts', 'BlogController@index');
