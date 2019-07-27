@@ -17,23 +17,21 @@
                             <th>Employer</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($jobs as $job)
+                        @foreach($pages as $page)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $job->title }}</td>
-                                <td>{{ $job->status }}</td>
+                                <td>{{ $page->title }}</td>
+                                <td>{{ $page->status }}</td>
                                 <td></td>
                                 <td>
-                                    <a href="/jobs/{{ $job->id }}/edit"
+                                    <a href="/pages/{{ $page->id }}/edit"
                                        class="btn btn-primary">
                                         <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
                                     </a>
-
-
-                                    <form action="/jobs/{{ $job->id }}" method="post" style="display:inline">
+                                    <form action="/pages/{{ $page->id }}" method="post" style="display:inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button href="/jobs/{{ $job->id }}" type="submit"
+                                        <button href="/jobs/{{ $page->id }}" type="submit"
                                                 class="btn btn-danger">
                                             <i data-toggle="tooltip" title="Delete" class="fa fa-trash"></i>
                                         </button>
@@ -46,7 +44,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
-                    {{ $jobs->links() }}
+                    {{ $pages->links() }}
                     {{--                    <ul class="pagination pagination-sm no-margin pull-right">--}}
                     {{--                        <li><a href="#">«</a></li>--}}
                     {{--                        <li><a href="#">1</a></li>--}}
