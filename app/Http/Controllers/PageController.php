@@ -35,4 +35,12 @@ class PageController extends Controller
         ]);
         return redirect('/pages')->with('success', 'Page created successfully.');
     }
+
+    public function destroy(Page $page)
+    {
+        $page->delete();
+        return redirect('/pages')->with('success', 'Page deleted successfully.');
+    }
+
+
 }

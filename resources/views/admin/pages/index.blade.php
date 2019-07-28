@@ -34,8 +34,7 @@
                                     <form action="/pages/{{ $page->id }}" method="post" style="display:inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button href="/jobs/{{ $page->id }}" type="submit"
-                                                class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger">
                                             <i data-toggle="tooltip" title="Delete" class="fa fa-trash"></i>
                                         </button>
                                     </form>
