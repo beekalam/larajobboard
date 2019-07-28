@@ -8,9 +8,10 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="/pages" method="post">
+                <form class="form-horizontal" action="/pages/{{ $page->id }}" method="post">
                     <div class="box-body">
                         @csrf
+                        @method('PATCH')
                         @include('admin.pages._form')
                     </div>
                     <!-- /.box-body -->

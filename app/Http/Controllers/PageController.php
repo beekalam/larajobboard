@@ -43,6 +43,7 @@ class PageController extends Controller
 
     public function edit(Page $page)
     {
+        return view('admin.pages.edit', compact("page"));
     }
 
     public function update(Page $page, Request $request)
