@@ -47,5 +47,7 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('/pages', 'PageController@index');
 Route::get('/pages/create','PageController@create');
 Route::post('/pages','PageController@store');
+Route::patch('/pages/{page}','PageController@update');
 Route::delete('/pages/{page}','PageController@destroy');
+
 Route::get('/posts', 'BlogController@index');

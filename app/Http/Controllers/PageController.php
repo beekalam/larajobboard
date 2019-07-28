@@ -21,12 +21,17 @@ class PageController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    private function rules()
     {
-        $this->validate($request, [
+        return [
             'title'   => 'required',
             'content' => 'required'
-        ]);
+        ];
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, $this->rules());
 
         Page::create([
             'title'     => request('title'),
@@ -34,6 +39,17 @@ class PageController extends Controller
             'page_type' => 'static_page'
         ]);
         return redirect('/pages')->with('success', 'Page created successfully.');
+    }
+
+    public function edit(Page $page)
+    {
+    }
+
+    public function update(Page $page, Request $request)
+    {
+        $this->validate($request, $this->rules());
+        $page->update($request->all());
+        return redirect('/pages')->with('success', 'Page created successfully');
     }
 
     public function destroy(Page $page)
