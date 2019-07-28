@@ -5,6 +5,9 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Posted Jobs</h3>
+                    <div class="box-tools">
+                        <a class="btn btn-primary" href="/pages/create">Create Page</a>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

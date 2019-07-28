@@ -45,4 +45,6 @@ Route::post('/admin/jobs/{job}/block', 'AdminJobController@Block');
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/pages', 'PageController@index');
+Route::get('/pages/create','PageController@create');
+Route::post('/pages','PageController@store');
 Route::get('/posts', 'BlogController@index');

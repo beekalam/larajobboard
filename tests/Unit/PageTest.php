@@ -17,4 +17,26 @@ class PageTest extends TestCase
         $this->assertEquals(1, Page::staticPages()->count());
     }
 
+    /** @test */
+    function to_create_static_pages_title_and_content_is_required()
+    {
+      $this->signIn();
+      $this->post('/pages',[])
+          ->assertSessionHasErrors('title')
+          ->assertSessionHasErrors('content');
+    }
+
+    /** @test */
+    function can_create_static_page()
+    {
+        $this->signIn();
+        $attributes = [
+            'title'   => 'my title',
+            'content' => 'some content'
+        ];
+        $this->post('/pages', $attributes)->assertRedirect('/pages');
+        $this->assertDatabaseHas('pages', $attributes);
+        $this->assertDatabaseHas('pages', ['page_type' => 'static_page']);
+    }
+
 }
