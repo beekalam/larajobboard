@@ -52,3 +52,5 @@ Route::patch('/pages/{page}','PageController@update');
 Route::delete('/pages/{page}','PageController@destroy');
 
 Route::get('/posts', 'BlogController@index');
+Route::get('/posts/create','BlogController@create');
+Route::post('/posts','BlogController@store');

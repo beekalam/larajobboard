@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="mb-5 text-center">
                     <h1 class="text-white font-weight-bold">Job Listings</h1>
-                    <p>Find your dream jobs in our powerful career website template.</p>
+                    <p>Find your dream job.</p>
                 </div>
             </div>
         </div>

@@ -242,7 +242,6 @@
 
 <!-- SCRIPTS -->
 @yield('scripts')
-
 @include('analytics')
 </body>
 </html>

@@ -6,7 +6,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Posted Jobs</h3>
                     <div class="box-tools">
-                        <a class="btn btn-primary" href="/pages/create">Create Page</a>
+                        <a class="btn btn-primary" href="/posts/create">Create Post</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -16,7 +16,7 @@
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Title</th>
-                            <th>Status</th>
+                            <th>image</th>
                             <th>Actions</th>
                         </tr>
                         @foreach($posts as $post)
@@ -24,7 +24,6 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>thumb</td>
-                                <td></td>
                                 <td>
                                     <a href="/pages/{{ $post->id }}/edit"
                                        class="btn btn-primary">

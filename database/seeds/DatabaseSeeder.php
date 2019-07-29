@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'content'   => 'Terms and and conditions',
             'page_type' => 'static_page',
         ]);
-        factory(Page::class,10)->create([
+        factory(Page::class,20)->create([
             'page_type' => 'blog_post'
         ]);
         factory(\App\Job::class, 300)->create();

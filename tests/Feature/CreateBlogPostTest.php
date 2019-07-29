@@ -17,4 +17,5 @@ class CreateBlogPostTest extends TestCase
         $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
         $this->get('/posts/')->assertSee($blog_post->title);
     }
+
 }

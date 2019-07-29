@@ -5,8 +5,8 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-md-12">
                 <div class="mb-5 text-center">
-                    <h1 class="text-white font-weight-bold">A Powerful Career Website Template</h1>
-                    <p>Find your dream jobs in our powerful career website template.</p>
+                    <h1 class="text-white font-weight-bold">LaraJobBoard</h1>
+                    <p>Find your dream job.</p>
                 </div>
 
                 <form method="get" class="search-jobs-form" action="/search">
