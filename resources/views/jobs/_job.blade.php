@@ -15,9 +15,9 @@
            elseif($job->job_type == 'part_time')
                $badge = "badge-success";
         @endphp
-        <span class="badge {{ $badge }} px-2 py-1 mb-3">{{ ucfirst(str_replace('-',' ',$job->job_type)) }}</span>
+        <span class="badge {{ $badge }} px-2 py-1 mb-3">{{ ucfirst(str_replace('-',' ',$job->type)) }}</span>
         <h2><a href="/jobs/{{ $job->id }}">{{ $job->title }}</a></h2>
-        <p class="meta">Publisher: <strong>John Stewart</strong> In:
+        <p class="meta">Publisher: <strong>{{ $job->user->name }}</strong> In:
             <strong>{{ ucfirst($job->category->name) }}</strong></p>
     </div>
 
@@ -27,6 +27,6 @@
     </div>
 
     <div class="col-md-3 text-md-right">
-        <strong class="text-black">$60k &mdash; $100k</strong>
+        <strong class="text-black">${{ number_format($job->salary)}}-${{ number_format($job->salary_max) }}</strong>
     </div>
 </div>
