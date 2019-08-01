@@ -55,8 +55,14 @@ class BlogController extends Controller
 
     public function update(Page $post)
     {
-        $this->validate(request(),$this->rules());
-        $post->update(request()->only('title','content'));
-        return redirect('/posts')->with('success', 'Post created successfully.');
+        $this->validate(request(), $this->rules());
+        $post->update(request()->only('title', 'content'));
+        return redirect('/posts')->with('success', 'Post updated successfully.');
+    }
+
+    public function destroy(Page $post)
+    {
+        $post->delete();
+        return redirect('/posts')->with('success', 'Post deleted successfully.');
     }
 }

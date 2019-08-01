@@ -19,10 +19,11 @@ class CreateBlogPostTest extends TestCase
         $post = factory(Page::class)->create();
         $this->get("/posts/{$post->id}/edit")->assertRedirect('/login');
         $this->patch('/posts/' . $post->id, [])->assertRedirect('/login');
+        $this->delete('/posts/'. $post->id)->assertRedirect('/login');
     }
 
     /** @test */
-    function authenticated_admin_can_view_blog_posts()
+    function admin_can_view_blog_posts()
     {
         $this->signIn();
         $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
@@ -30,7 +31,7 @@ class CreateBlogPostTest extends TestCase
     }
 
     /** @test */
-    function authenticated_admin_can_update_posts()
+    function admin_can_update_posts()
     {
         $this->signIn();
         $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
@@ -40,6 +41,15 @@ class CreateBlogPostTest extends TestCase
         ];
         $this->patch("/posts/{$blog_post->id}", $attributes);
         $this->assertDatabaseHas('pages', $attributes);
+    }
+
+    /** @test */
+    function admin_can_delete_posts()
+    {
+        $this->signIn();
+        $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
+        $this->delete('/posts/'. $blog_post->id);
+        $this->assertDatabaseMissing('pages',$blog_post->toArray());
     }
 
 

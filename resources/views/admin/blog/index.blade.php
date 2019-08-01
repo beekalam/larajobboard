@@ -29,7 +29,7 @@
                                        class="btn btn-primary">
                                         <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
                                     </a>
-                                    <form action="/pages/{{ $post->id }}" method="post" style="display:inline">
+                                    <form action="/posts/{{ $post->id }}" method="post" style="display:inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
