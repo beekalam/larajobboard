@@ -15,15 +15,15 @@ class BlogController extends Controller
 
     public function index()
     {
-        return view('admin.blog.index',[
-            'posts' => Page::where('page_type','blog_post')->orderBy('created_at','desc')->paginate(10)
+        return view('admin.blog.index', [
+            'posts' => Page::where('page_type', 'blog_post')->orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 
     public function create()
     {
-        return view('admin.blog.create',[
-          'post' => new Page()
+        return view('admin.blog.create', [
+            'post' => new Page()
         ]);
     }
 
@@ -45,6 +45,18 @@ class BlogController extends Controller
             'content'   => request('content'),
             'page_type' => 'blog_post'
         ]);
+        return redirect('/posts')->with('success', 'Post created successfully.');
+    }
+
+    public function edit(Request $request, Page $post)
+    {
+        return view('admin.blog.edit', compact("post"));
+    }
+
+    public function update(Page $post)
+    {
+        $this->validate(request(),$this->rules());
+        $post->update(request()->only('title','content'));
         return redirect('/posts')->with('success', 'Post created successfully.');
     }
 }
