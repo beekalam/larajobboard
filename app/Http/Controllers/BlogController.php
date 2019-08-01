@@ -40,11 +40,18 @@ class BlogController extends Controller
     {
         $this->validate($request, $this->rules());
 
-        Page::create([
+        $attributes = [
             'title'     => request('title'),
             'content'   => request('content'),
-            'page_type' => 'blog_post'
-        ]);
+            'page_type' => 'blog_post',
+        ];
+
+        if ($request->hasFile('feature_image') && $request->file('feature_image')->isValid()) {
+            $path = $request->feature_image->store('blog_images', 'public');
+            $attributes['feature_image'] = $path;
+        }
+
+        Page::create($attributes);
         return redirect('/posts')->with('success', 'Post created successfully.');
     }
 
@@ -56,7 +63,14 @@ class BlogController extends Controller
     public function update(Page $post)
     {
         $this->validate(request(), $this->rules());
-        $post->update(request()->only('title', 'content'));
+        $attributes = request()->only('title', 'content');
+
+        if (request()->hasFile('feature_image') && request()->file('feature_image')->isValid()) {
+            $path = request()->feature_image->store('blog_images', 'public');
+            $attributes['feature_image'] = $path;
+        }
+
+        $post->update($attributes);
         return redirect('/posts')->with('success', 'Post updated successfully.');
     }
 

@@ -1,4 +1,3 @@
-
 <div class="form-group @error('title') has-error @enderror">
     <label for="title" class="col-sm-2">Title</label>
     <div class="col-sm-10">
@@ -19,5 +18,12 @@
         @if($errors->has('content'))
             <span class='help-block'>{{ $errors->first('content') }}</span>
         @endif
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="image">Image</label>
+    <div class="col-sm-10">
+        <input type="file" name="feature_image" id="feature_image">
     </div>
 </div>
