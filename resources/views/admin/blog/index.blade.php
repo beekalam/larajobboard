@@ -25,7 +25,7 @@
                                 <td>{{ $post->title }}</td>
                                 <td>thumb</td>
                                 <td>
-                                    <a href="/pages/{{ $post->id }}/edit"
+                                    <a href="/posts/{{ $post->id }}/edit"
                                        class="btn btn-primary">
                                         <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
                                     </a>
