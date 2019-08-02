@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -27,7 +28,6 @@ class BlogController extends Controller
         ]);
     }
 
-
     private function rules()
     {
         return [
@@ -41,15 +41,11 @@ class BlogController extends Controller
         $this->validate($request, $this->rules());
 
         $attributes = [
-            'title'     => request('title'),
-            'content'   => request('content'),
-            'page_type' => 'blog_post',
+            'title'         => request('title'),
+            'content'       => request('content'),
+            'page_type'     => 'blog_post',
+            'feature_image' => $this->storeFeatureImage()
         ];
-
-        if ($request->hasFile('feature_image') && $request->file('feature_image')->isValid()) {
-            $path = $request->feature_image->store('blog_images', 'public');
-            $attributes['feature_image'] = $path;
-        }
 
         Page::create($attributes);
         return redirect('/posts')->with('success', 'Post created successfully.');
@@ -64,19 +60,33 @@ class BlogController extends Controller
     {
         $this->validate(request(), $this->rules());
         $attributes = request()->only('title', 'content');
+        $attributes['feature_image'] = $this->storeFeatureImage();
 
-        if (request()->hasFile('feature_image') && request()->file('feature_image')->isValid()) {
-            $path = request()->feature_image->store('blog_images', 'public');
-            $attributes['feature_image'] = $path;
-        }
-
+        $old_image = $post->feature_image;
         $post->update($attributes);
+        $this->deleteImage($old_image);
         return redirect('/posts')->with('success', 'Post updated successfully.');
+    }
+
+    private function storeFeatureImage()
+    {
+        if (request()->hasFile('feature_image') && request()->file('feature_image')->isValid()) {
+            return request()->feature_image->store('blog_images', 'public');
+        }
+        return null;
     }
 
     public function destroy(Page $post)
     {
+        $this->deleteImage($post->feature_image);
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted successfully.');
+    }
+
+    private function deleteImage($old_image)
+    {
+        if ($old_image) {
+            Storage::disk('public')->delete($old_image);
+        }
     }
 }

@@ -8,7 +8,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="/posts/{{ $post->id }}" method="post">
+                <form class="form-horizontal" action="/posts/{{ $post->id }}" method="post" enctype="multipart/form-data">
                     <div class="box-body">
                         @csrf
                         @method('PATCH')

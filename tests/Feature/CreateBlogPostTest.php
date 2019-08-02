@@ -80,6 +80,7 @@ class CreateBlogPostTest extends TestCase
         ];
         $this->post('/posts', $attributes);
         Storage::disk('public')->assertExists('/blog_images/' . $feature_image->hashName());
+        $this->assertNotNull(Page::first()->feature_image);
     }
 
     /** @test */
@@ -97,6 +98,7 @@ class CreateBlogPostTest extends TestCase
         ];
         $this->patch('/posts/' . $post->id, $attributes);
         Storage::disk('public')->assertExists('/blog_images/' . $feature_image->hashName());
+        $this->assertNotNull(Page::first()->feature_image);
     }
 
 }

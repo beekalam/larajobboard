@@ -24,6 +24,10 @@
 <div class="form-group">
     <label for="image">Image</label>
     <div class="col-sm-10">
+        <div class="mb-3">
+            <img  style="width:100px;"
+                    src="{{ asset('storage/'.  $post->feature_image) }}" alt="">
+        </div>
         <input type="file" name="feature_image" id="feature_image">
     </div>
 </div>

@@ -23,7 +23,10 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->title }}</td>
-                                <td>thumb</td>
+                                <td>
+                                    <img style="width:100px;height:100px;"
+                                         src="{{ asset('storage/' . $post->feature_image) }}">
+                                </td>
                                 <td>
                                     <a href="/posts/{{ $post->id }}/edit"
                                        class="btn btn-primary">
