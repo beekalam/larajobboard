@@ -16,6 +16,7 @@ class BlogController extends Controller
 
     public function index()
     {
+        $this->authorize('view', new Page());
         return view('admin.blog.index', [
             'posts' => Page::where('page_type', 'blog_post')->orderBy('created_at', 'desc')->paginate(10)
         ]);
@@ -23,6 +24,7 @@ class BlogController extends Controller
 
     public function create()
     {
+        $this->authorize('create', new Page());
         return view('admin.blog.create', [
             'post' => new Page()
         ]);
@@ -38,6 +40,7 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', new Page());
         $this->validate($request, $this->rules());
 
         $attributes = [
@@ -53,11 +56,13 @@ class BlogController extends Controller
 
     public function edit(Request $request, Page $post)
     {
+        $this->authorize('update', $post);
         return view('admin.blog.edit', compact("post"));
     }
 
     public function update(Page $post)
     {
+        $this->authorize('update', $post);
         $this->validate(request(), $this->rules());
         $attributes = request()->only('title', 'content');
         $attributes['feature_image'] = $this->storeFeatureImage();
@@ -78,6 +83,7 @@ class BlogController extends Controller
 
     public function destroy(Page $post)
     {
+        $this->authorize('delete', $post);
         $this->deleteImage($post->feature_image);
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted successfully.');

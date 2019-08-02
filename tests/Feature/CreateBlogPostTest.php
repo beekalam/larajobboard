@@ -27,7 +27,7 @@ class CreateBlogPostTest extends TestCase
     /** @test */
     function admin_can_view_blog_posts()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
         $this->get('/posts/')->assertSee($blog_post->title);
     }
@@ -35,7 +35,7 @@ class CreateBlogPostTest extends TestCase
     /** @test */
     function admin_can_create_blog_posts()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $attributes = [
             'title'   => 'post title',
             'content' => 'post_content'
@@ -48,7 +48,7 @@ class CreateBlogPostTest extends TestCase
     /** @test */
     function admin_can_update_posts()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
         $attributes = [
             'title'   => 'title changed',
@@ -61,7 +61,7 @@ class CreateBlogPostTest extends TestCase
     /** @test */
     function admin_can_delete_posts()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $blog_post = factory(Page::class)->create(['page_type' => 'blog_post']);
         $this->delete('/posts/' . $blog_post->id);
         $this->assertDatabaseMissing('pages', $blog_post->toArray());
@@ -70,7 +70,7 @@ class CreateBlogPostTest extends TestCase
     /** @test */
     function can_upload_a_blog_feature_image()
     {
-        $this->signIn();
+        $this->adminSignIn();
         Storage::fake('public');
         $feature_image = UploadedFile::fake()->image('feature_image.jpg');
         $attributes = [
@@ -87,7 +87,7 @@ class CreateBlogPostTest extends TestCase
     function can_update_a_blog_feature_image()
     {
         $this->withoutExceptionHandling();
-        $this->signIn();
+        $this->adminSignIn();
         $post = factory(Page::class)->create(['feature_image' => 'image.jpg', 'page_type' => 'blog_post']);
         Storage::fake('public');
         $feature_image = UploadedFile::fake()->image('feature_image.jpg');

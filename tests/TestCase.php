@@ -15,4 +15,8 @@ abstract class TestCase extends BaseTestCase
         $this->be($this->user);
         return $this->user;
     }
+    protected function adminSignIn($overrides = [])
+    {
+        return $this->signIn(array_merge($overrides,['user_type' => 'admin']));
+    }
 }

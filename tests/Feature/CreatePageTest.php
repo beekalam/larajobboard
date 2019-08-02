@@ -14,7 +14,7 @@ class CreatePageTest extends TestCase
     /** @test */
     function to_create_static_pages_title_and_content_is_required()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $this->post('/pages', [])
              ->assertSessionHasErrors('title')
              ->assertSessionHasErrors('content');
@@ -23,7 +23,7 @@ class CreatePageTest extends TestCase
     /** @test */
     function can_create_static_page()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $attributes = [
             'title'   => 'my title',
             'content' => 'some content'
@@ -36,7 +36,7 @@ class CreatePageTest extends TestCase
     /** @test */
     function can_delete_pages()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $page = factory(Page::class)->create();
         $this->delete('/pages/' . $page->id);
         $this->assertEquals(0, Page::count());
@@ -45,7 +45,7 @@ class CreatePageTest extends TestCase
     /** @test */
     function authenticated_user_may_update_pages()
     {
-        $this->signIn();
+        $this->adminSignIn();
         $page = factory(Page::class)->create();
         $attrs = [
             'title'   => 'title changed',
