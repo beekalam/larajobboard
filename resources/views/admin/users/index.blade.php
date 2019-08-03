@@ -37,9 +37,10 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        {{ $users->links() }}
+                        @include('inc._paginate',['model' => $users])
                     </ul>
                 </div>
+                
             </div>
         </div>
     </div>
