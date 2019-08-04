@@ -31,13 +31,13 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+            <li class="active"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             @if(auth()->user()->isAdmin())
-                <li class="active"><a href="/category"><i class="fa fa-link"></i> <span>Categories</span></a></li>
+                <li class="active"><a href="/category"><i class="fa fa-server"></i> <span>Categories</span></a></li>
             @endif
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-link"></i> <span>Employer</span>
+                    <i class="fa fa-black-tie"></i> <span>Employer</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -50,10 +50,10 @@
             </li>
 
             @if(auth()->user()->isAdmin())
-                <li><a href="/users"><i class="fa fa-link"></i> <span>Users</span></a></li>
+                <li><a href="/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-link"></i> <span>Jobs</span>
+                        <i class="fa fa-folder"></i> <span>Jobs</span>
                         <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span>
                     </a>
                     <ul class="treeview-menu">

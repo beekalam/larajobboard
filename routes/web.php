@@ -2,16 +2,6 @@
 
 Auth::routes();
 
-Route::get('/test', function () {
-    error_log('in test');
-    // error_log($_SERVER['REMOTE_ADDR']);
-    // error_log(print_r($_SERVER,true));
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        error_log("id: " . $id);
-    }
-    return date('Y-m-d H:i:s', time());
-});
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/select-register', 'HomeController@register');
