@@ -173,10 +173,10 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Anything you want
+            {{-- Anything you want --}}
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong> <a href="http://github.com/beekalam/larajobboard">LaraJobBoard</a>.</strong>
     </footer>
 
     <!-- Control Sidebar -->

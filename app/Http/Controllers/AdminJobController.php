@@ -29,8 +29,14 @@ class AdminJobController extends Controller
             'approved' => 1,
             'blocked'  => 2
         ];
+        $titles = [
+            0 => 'Pending Jobs',
+            1 => 'Approved Jobs',
+            2 => 'Blocked Jobs'
+        ];
         return view('admin.jobs.list', [
-            'jobs' => Job::where('status', $types[$type])->paginate(10)
+            'jobs' => Job::where('status', $types[$type])->paginate(10),
+            'title'                     => $titles[$types[$type]]
         ]);
     }
 
@@ -39,12 +45,14 @@ class AdminJobController extends Controller
      */
     public function Approve(Job $job)
     {
+        $this->authorize('changeJobStatus',$job);
         $job->update(['status' => 1]);
         return redirect('admin/jobs/approved')->with('success', 'Successfully approved.');
     }
 
     public function Block(Job $job)
     {
+        $this->authorize('changeJobStatus',$job);
         $job->update(['status' => 2]);
         return redirect('admin/jobs/blocked')->with('success', 'Successfully blocked.');
     }

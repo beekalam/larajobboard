@@ -95,4 +95,7 @@ class BlogController extends Controller
             Storage::disk('public')->delete($old_image);
         }
     }
+
+    
+
 }

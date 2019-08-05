@@ -153,7 +153,7 @@
                         <li><a href="/search">Job Listings</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="/blog">Blog</a></li>
                         @guest
                             <li><a href="/select-register">Register</a></li>
                             <li><a href="/login">Login</a></li>

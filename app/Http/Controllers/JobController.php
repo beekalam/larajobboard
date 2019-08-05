@@ -120,6 +120,6 @@ class JobController extends Controller
             'jobs' => Job::where('user_id', auth()->id())->paginate(10)
         ]);
     }
-
+    
 
 }

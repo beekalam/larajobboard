@@ -44,6 +44,10 @@ class JobPolicy
         //
     }
 
+    public function changeJobStatus(User $user){
+        return $user->isAdmin();
+    }
+
     /**
      * Determine whether the user can update the job.
      *
