@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use App\Country;
 use App\State;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -41,19 +40,18 @@ class CreateUserTest extends TestCase
     }
 
     /** @test */
-    function authentiated_user_change_password()
+    function authenticated_user_change_password()
     {
-        $user = $this->signIn([
-            'password' => bcrypt('secret')
-        ]);
+        $this->withoutExceptionHandling();
+        $user = $this->signIn();
+        $oldpass = $user->password;
 
         $this->post('/change-password/' . $user->id, [
-            'old_password'        => 'secret',
+            'now_password'        => 'secret',
             'new_password'        => 'secret123',
             'new_password_repeat' => 'secret123',
         ]);
 
-        // dd(User::first()->password);
-        $this->assertTrue(bcrypt('secret123') == User::first()->password);
+        $this->assertNotEquals($oldpass,User::first()->password);
     }
 }

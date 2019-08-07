@@ -9,9 +9,5 @@ class ReadPageTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    function it_()
-    {
 
-    }
 }

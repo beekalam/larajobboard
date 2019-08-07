@@ -45,12 +45,6 @@ class JobController extends Controller
 
     public function store(JobRequest $request)
     {
-        // dd(
-        //     collect($request->all())->filter(function($v,$k){
-        //         return !is_null($v);
-        //     })->forget('_token')->all()
-        //
-        // );
         Job::create([
             'user_id'                   => auth()->id(),
             'title'                     => request('title'),

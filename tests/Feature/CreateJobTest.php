@@ -16,10 +16,13 @@ class CreateJobTest extends TestCase
     function authenticated_users_may_post_jobs()
     {
         $this->withoutExceptionHandling();
-        $this->signIn();
-        // var_dump(factory(Job::class)->make()->toArray());;exit;
-        $this->post('/jobs', $job = factory(Job::class)->make()->toArray());
-        $this->assertDatabaseHas('jobs', ['title' => $job['title']]);
+        $this->signIn(['user_type' => 'admin']);
+
+        $category = factory(Category::class)->create();
+        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
+
+        $this->post('/jobs', $job->toArray());
+        $this->assertDatabaseHas('jobs', ['title' => 'test title']);
     }
 
     /** @test */
@@ -39,9 +42,9 @@ class CreateJobTest extends TestCase
     }
 
     /** @test */
-    function authenticated_user_may_delete_jobs()
+    function authenticated_admin_may_delete_jobs()
     {
-        $this->signIn();
+        $this->signIn(['user_type' => 'admin']);
         $category = factory(Category::class)->create();
         $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
         $this->delete("/jobs/{$job->id}")
