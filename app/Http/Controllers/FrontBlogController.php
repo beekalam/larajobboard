@@ -10,7 +10,7 @@ class FrontBlogController extends Controller
 {
 	public function index(){
 		return view('blog.index',[
-			'posts' => Page::where('page_type','blog_post')->get()
+			'posts' => Page::where('page_type','blog_post')->orderBy('created_at','desc')->paginate(5)
 		]);
 	}
 

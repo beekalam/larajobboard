@@ -8,7 +8,7 @@
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <div class="d-flex align-items-center">
                         <div class="border p-2 d-inline-block mr-3 rounded">
-                            <img src="/images/featured-listing-1.jpg" alt="Free Website Template By Free-Template.co">
+                            <img src="/images/featured-listing-1.jpg" alt="">
                         </div>
                         <div>
                             <h2>{{ $job->title }}</h2>
@@ -60,7 +60,7 @@
 
                     <div class="mb-5">
                         <figure class="mb-5"><img src="/images/sq_img_1.jpg"
-                                                  alt="Free Website Template by Free-Template.co"
+                                                  alt=""
                                                   class="img-fluid rounded"></figure>
                         <h3 class="h5 d-flex align-items-center mb-4 text-primary">
                             <span class="icon-align-left mr-3"></span>Job Description
