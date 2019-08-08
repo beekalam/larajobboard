@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         // $this->call(UsersTableSeeder::class);
         factory(User::class)->create([
             "email"     => "admin@demo.com",
@@ -46,9 +48,17 @@ class DatabaseSeeder extends Seeder
             'content'   => 'Terms and and conditions',
             'page_type' => 'static_page',
         ]);
-        factory(Page::class,20)->create([
-            'page_type' => 'blog_post'
-        ]);
+
+        foreach(range(1,20) as $i){
+            factory(Page::class)->create([
+                'page_type'     => 'blog_post',
+                'feature_image' => 'feature_image_'. random_int(1,3) .'.jpg',
+            ]);
+        }
+
+        // factory(Page::class,20)->create([
+            // 'page_type' => 'blog_post'
+        // ]);
         factory(\App\Job::class, 300)->create();
     }
 }

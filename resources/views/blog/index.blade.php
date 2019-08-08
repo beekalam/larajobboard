@@ -12,7 +12,7 @@
                 @foreach($posts as $post)
                     <div class="col-md-6 col-lg-4 mb-5">
                         <a href="/blog/{{ $post->id }}">
-                            <img src="{{ asset('blog_images/'.$post->feature_image) }}" alt=""
+                            <img src="{{ asset('storage/blog_images/'.$post->feature_image) }}" alt=""
                                  class="img-fluid rounded mb-4">
                         </a>
 
