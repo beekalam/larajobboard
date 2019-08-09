@@ -14,6 +14,8 @@ Route::resource('/jobs', 'JobController');
 Route::post('/jobs/{job}/favorite', 'FavoriteController@favorite');
 Route::delete('/jobs/{job}/unfavorite', 'FavoriteController@unfavorite');
 Route::get('/posted', 'JobController@posted');
+Route::get('/jobs/{job}/apply','JobApplyController@show');
+Route::post('/jobs/{job}/apply','JobApplyController@apply');
 
 Route::resource('/category', 'CategoryController');
 Route::get('/cat/{category}', 'JobCategoryController@show');

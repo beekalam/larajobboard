@@ -49,7 +49,7 @@
                             </form>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
+                            <a href="/jobs/{{ $job->id }}/apply" class="btn btn-block btn-primary btn-md">Apply Now</a>
                         </div>
                     </div>
                 </div>
