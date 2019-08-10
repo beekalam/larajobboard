@@ -21,6 +21,7 @@ class JobApplyController extends Controller
             'phone_number' => 'required',
             'resume'       => 'required'
         ]);
+        $ret['user_id']  = auth()->id();
         JobApplication::create($ret);
         return back()->with('success', 'Your resume has been received.');
     }
