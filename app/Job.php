@@ -117,6 +117,10 @@ class Job extends Model
         return $query->where('status', '2');
     }
 
+    public function scopeActive($query){
+       return $query->where('status','1')->where('deadline','>', date('Y-m-d H:i:s', time())); 
+    }
+
     public static function PostedJobs()
     {
         return Cache::remember('posted_jobs', now()->addMinute(2), function(){

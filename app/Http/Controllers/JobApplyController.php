@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Job;
 use App\JobApplication;
 use Illuminate\Http\Request;
+use App\Rules\ResumeRule;
 
 class JobApplyController extends Controller
 {
@@ -19,10 +20,11 @@ class JobApplyController extends Controller
             'name'         => 'required',
             'email'        => 'required',
             'phone_number' => 'required',
-            'resume'       => 'required'
+            'resume'       =>  ['required', new ResumeRule]
         ]);
         $ret['user_id']  = auth()->id();
         JobApplication::create($ret);
+          
         return back()->with('success', 'Your resume has been received.');
     }
 }
