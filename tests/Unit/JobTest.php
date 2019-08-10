@@ -65,4 +65,12 @@ class JobTest extends TestCase
         $this->assertEquals(0,Job::Approved()->get()->count());
         $this->assertEquals(2,Job::Blocked()->get()->count());
    }
+
+   /** @test */
+   function can_get_number_of_active_jobs()
+   {
+     factory(Job::class,5)->create(['status' => '1']);
+     factory(Job::class,2)->create(['deadline' => date('Y-m-d H:i:s', time() - 100), 'status' => '1']);
+     $this->assertEquals(5, Job::active()->count());
+   }
 }

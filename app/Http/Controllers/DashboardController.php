@@ -25,7 +25,7 @@ class DashboardController extends Controller
             'applied' => JobApplication::count(),
             'employer_count' => User::EmployerCount(),
             'total_jobs' => Job::Approved()->count(),
-            'active_jobs' => Job::Active()->count()
+            'active_jobs' => Job::Active()->count
         ] );
     }
 

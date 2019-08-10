@@ -10,7 +10,7 @@
                     <h5 class="modal-title"> Online job application form </h5>
                 </div>
                 <div class="modal-body">
-
+                    {{ isset($error) ? dump($error) : '' }}              
                     <div class="form-group">
                         <label class="control-label" for="name"> Name: </label>
                         <input class="form-control @error('name') is-invalid @enderror"

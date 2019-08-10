@@ -22,7 +22,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Active Jobs</span>
-                    <span class="info-box-number">41,410</span>
+                    <span class="info-box-number">{{ $active_jobs }}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -39,7 +39,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Total Jobs</span>
-                    <span class="info-box-number">760</span>
+                    <span class="info-box-number">{{ $total_jobs }}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -53,7 +53,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Employer</span>
-                    <span class="info-box-number">2,000</span>
+                    <span class="info-box-number">{{ $employer_count }}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -69,7 +69,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Applied</span>
-                    <span class="info-box-number">2,000</span>
+                    <span class="info-box-number">{{ $applied }}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
