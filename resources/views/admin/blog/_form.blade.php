@@ -31,3 +31,12 @@
         <input type="file" name="feature_image" id="feature_image">
     </div>
 </div>
+
+@section('scripts')
+    <script src="{{ asset('AdminLTE-2.4.12/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            CKEDITOR.replace('content');
+        });
+    </script>
+@endsection
