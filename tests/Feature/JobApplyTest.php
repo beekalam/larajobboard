@@ -28,8 +28,7 @@ class JobApplyTest extends TestCase
     /** @test */
     function to_apply_to_job_only_pdf_word_files_are_accepted()
     {
-        $employer = factory(User::class)->create(['user_type' => 'employer']);
-        $job = factory(Job::class)->create(['user_id' => $employer->id]);
+        $job = $this->create_job();
         $this->post('/jobs/' . $job->id . '/apply', [
             'name'         => 'john smith',
             'email'        => 'john@demo.com',
@@ -41,8 +40,7 @@ class JobApplyTest extends TestCase
     /** @test */
     function user_can_apply_to_a_job()
     {
-        $employer = factory(User::class)->create(['user_type' => 'employer']);
-        $job = factory(Job::class)->create(['user_id' => $employer->id]);
+        $job = $this->create_job();
         $this->post('/jobs/' . $job->id . '/apply', [
             'name'         => 'john smith',
             'email'        => 'john@demo.com',
@@ -60,8 +58,7 @@ class JobApplyTest extends TestCase
     function can_upload_resume()
     {
         Storage::fake('public');
-        $employer = factory(User::class)->create(['user_type' => 'employer']);
-        $job = factory(Job::class)->create(['user_id' => $employer->id]);
+        $job = $this->create_job();
         $this->post('/jobs/' . $job->id . '/apply', [
             'name'         => 'john smith',
             'email'        => 'john@demo.com',
@@ -70,7 +67,11 @@ class JobApplyTest extends TestCase
         ]);
 
         Storage::disk('public')->assertExists(JobApplication::first()->resume);
+    }
 
+    private function create_job(){
+        $employer = factory(User::class)->create(['user_type' => 'employer']);
+        return factory(Job::class)->create(['user_id' => $employer->id]);
     }
 
 }
