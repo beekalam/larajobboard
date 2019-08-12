@@ -9,5 +9,4 @@ class ReadPageTest extends TestCase
 {
     use RefreshDatabase;
 
-
 }

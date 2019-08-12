@@ -5,8 +5,8 @@ namespace Tests\Unit;
 use App\Category;
 use App\Job;
 use App\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class CreateJobTest extends TestCase
 {
@@ -19,8 +19,8 @@ class CreateJobTest extends TestCase
         $this->signIn(['user_type' => 'admin']);
 
         $category = factory(Category::class)->create();
-        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
-
+        $job = factory(Job::class)->make(['category_id' => $category->id, 'title' => 'test title']);
+        $job['category'] = $job['category_id'];
         $this->post('/jobs', $job->toArray());
         $this->assertDatabaseHas('jobs', ['title' => 'test title']);
     }

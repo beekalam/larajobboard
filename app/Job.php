@@ -2,9 +2,8 @@
 
 namespace App;
 
-use function foo\func;
-use Illuminate\Database\Eloquent\Model;
 use Cache;
+use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
@@ -37,16 +36,23 @@ class Job extends Model
     {
         $jobs = Job::latest();
         if (isset($params['job_type']) && !empty($params['job_type'])) {
-            $jobs = $jobs->orWhere('job_type', '=', $params['job_type']);
+            $jobs = $jobs->where('job_type', '=', $params['job_type']);
         }
         if (isset($params['title']) && !empty($params['title'])) {
-            $jobs = $jobs->orWhere('title', 'like', $params['title']);
+            $jobs = $jobs->where('title', 'like', $params['title']);
         }
 
         if (isset($params['state_name']) && !empty($params['state_name'])) {
-            $jobs = $jobs->orWhere('state_name', 'like', $params['state_name']);
+            $jobs = $jobs->where('state_name', 'like', $params['state_name']);
         }
+        if (isset($params['country_name']) && !empty($params['country_name'])) {
+            $jobs = $jobs->orWhere('country_name', 'like', $params['country_name']);
 
+            $country = Country::where('country_name', 'like', '%' . $params['country_name'] . '%')->first();
+            if ($country) {
+                $jobs = $jobs->orWhere('country_id', $country->id);
+            }
+        }
         return $jobs;
     }
 
@@ -117,14 +123,15 @@ class Job extends Model
         return $query->where('status', '2');
     }
 
-    public function scopeActive($query){
-       return $query->where('status','1')->where('deadline','>', date('Y-m-d H:i:s', time())); 
+    public function scopeActive($query)
+    {
+        return $query->where('status', '1')->where('deadline', '>', date('Y-m-d H:i:s', time()));
     }
 
     public static function PostedJobs()
     {
-        return Cache::remember('posted_jobs', now()->addMinute(2), function(){
-            return Job::where('status',1)->count();
+        return Cache::remember('posted_jobs', now()->addMinute(2), function () {
+            return Job::where('status', 1)->count();
         });
     }
 

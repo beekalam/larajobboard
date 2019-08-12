@@ -26,8 +26,8 @@ class JobRequest extends FormRequest
         return [
             'title'       => 'required',
             'position'    => 'required',
-            'category' => 'required',
-            'deadline'   => 'required',
+            'category'    => 'required',
+            'deadline'    => 'required',
             'description' => 'required',
         ];
     }

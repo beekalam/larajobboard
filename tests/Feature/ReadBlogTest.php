@@ -13,7 +13,7 @@ class ReadBlogPostTest extends TestCase
     /** @test */
     public function can_view_blog_list()
     {
-        $post = factory(Page::class)->create();
+        $post = factory(Page::class)->create(['page_type' => 'blog_post']);
         $this->get('/blog')
              ->assertStatus(200)
              ->assertSee($post->title);

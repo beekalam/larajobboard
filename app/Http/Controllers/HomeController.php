@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Country;
 use App\Job;
-use App\State;
 use App\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -29,7 +28,8 @@ class HomeController extends Controller
     {
         return view('home.home', [
             'categories'     => Category::getAllCategories(),
-            'states'         => State::getAllStates(),
+            // 'states'         => State::getAllStates(),
+            'countries'      => Country::getAllCountries(),
             'user_count'     => User::userCount(),
             'employer_count' => User::employerCount(),
             'posted_jobs'    => Job::PostedJobs(),
@@ -41,7 +41,8 @@ class HomeController extends Controller
         $title = request('search_term');
         $job_type = request('job_type');
         $state_name = request('location');
-        $jobs = Job::filter(compact('title', 'job_type', 'state_name'))->paginate(5);
+        $country_name = request('location');
+        $jobs = Job::filter(compact('title', 'job_type', 'country_name'))->paginate(5);
 
         $jobs->withPath("?title={$title}&job_type={$job_type}&location={$state_name}");
         return view('home.search', compact('jobs'));

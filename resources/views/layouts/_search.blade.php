@@ -18,10 +18,10 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                             <select class="form-control" name="location">
-                                <option value="">Anywhere</option>
-                                @foreach($states as $state)
-                                    <option value="{{ $state->state_name }}">
-                                        {{ $state->state_name }}
+                                <option value="anywhere">Anywhere</option>
+                                @foreach($countries as $country)
+                                    <option value="{{ $country->country_name }}">
+                                        {{ $country->country_name }}
                                     </option>
                                 @endforeach
                             </select>
