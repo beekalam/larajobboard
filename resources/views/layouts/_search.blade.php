@@ -1,5 +1,6 @@
 <section class="home-section section-hero overlay bg-image" style="background-image: url('/images/hero_1.jpg');"
          id="home-section">
+         
 
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -28,6 +29,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                             <select class="form-control" name="job_type">
+                                <option value="">All</option>
                                 <option value="part_time">Part Time</option>
                                 <option value="full_time">Full Time</option>
                                 <option value="contract">Contract</option>

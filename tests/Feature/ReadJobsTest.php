@@ -4,13 +4,12 @@ namespace Tests\Unit;
 
 use App\Category;
 use App\Job;
-use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ReadJobsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     function can_see_job_title_in_jobs()
@@ -48,8 +47,7 @@ class ReadJobsTest extends TestCase
     /** @test */
     function can_search_jobs()
     {
-        $category = factory(Category::class)->create();
-        $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
+        $job = factory(Job::class)->create(['title' => 'test title']);
         $this->get('/search?title=test+title')
              ->assertStatus(200)
              ->assertSee('test title');

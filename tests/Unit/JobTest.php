@@ -78,4 +78,11 @@ class JobTest extends TestCase
         factory(Job::class, 2)->create(['deadline' => date('Y-m-d H:i:s', time() - 100), 'status' => '1']);
         $this->assertEquals(5, Job::active()->count());
     }
+
+    /** @test */
+    function can_filter_jobs_by_position()
+    {
+        $job = factory(Job::class)->create(['position' => 'php developer']);
+        $this->assertEquals('php developer',Job::filter(['title' => 'php'])->first()->position);
+    }
 }

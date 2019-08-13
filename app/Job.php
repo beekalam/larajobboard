@@ -39,12 +39,14 @@ class Job extends Model
             $jobs = $jobs->where('job_type', '=', $params['job_type']);
         }
         if (isset($params['title']) && !empty($params['title'])) {
-            $jobs = $jobs->where('title', 'like', $params['title']);
+            $jobs = $jobs->where('title', 'like', '%' . $params['title'] . '%')
+                         ->orWhere('position', 'like', '%' . $params['title'] . '%');
         }
 
         if (isset($params['state_name']) && !empty($params['state_name'])) {
             $jobs = $jobs->where('state_name', 'like', $params['state_name']);
         }
+
         if (isset($params['country_name']) && !empty($params['country_name'])) {
             $jobs = $jobs->orWhere('country_name', 'like', $params['country_name']);
 
