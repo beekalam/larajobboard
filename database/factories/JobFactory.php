@@ -57,6 +57,7 @@ $factory->define(Job::class, function (Faker $faker) {
         'experience_required_years' => 1,
         'views'                     => 0,
         'deadline'                  => date('Y-m-d H:i:s', time() + 10000),
+        'anywhere_location'         => $faker->numberBetween(0,1),
         'status'                    => 0
     ];
 });

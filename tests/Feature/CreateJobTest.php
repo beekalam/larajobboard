@@ -15,7 +15,6 @@ class CreateJobTest extends TestCase
     /** @test */
     function authenticated_users_may_post_jobs()
     {
-        $this->withoutExceptionHandling();
         $this->signIn(['user_type' => 'admin']);
 
         $category = factory(Category::class)->create();
@@ -85,5 +84,16 @@ class CreateJobTest extends TestCase
              ->assertStatus(403);
     }
 
+    /** @test */
+    function authorized_user_may_create_jobs_with_anywhere_flag()
+    {
+        $this->withoutExceptionHandling();
+        $this->signIn(['user_type' => 'admin']);
+        $job = factory(Job::class)->make(['anywhere_location' => '1']);
+        $job['category'] = $job['category_id'];
+        $this->post('/jobs', $job->toArray())
+            ->assertRedirect('/jobs');
+        $this->assertDatabaseHas('jobs', ['anywhere_location' => 1]);
+    }
 
 }

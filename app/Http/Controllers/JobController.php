@@ -73,7 +73,8 @@ class JobController extends Controller
             'city_name'                 => 'todo',
             'experience_required_years' => request('experience_required_years'),
             'deadline'                  => date('Y-m-d H:i:s', time()),
-            'status'                    => 0
+            'status'                    => 0,
+            'anywhere_location'         => is_null(request('anywhere_location')) ? 0 : 1,
         ]);
         return redirect('/jobs');
     }

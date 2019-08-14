@@ -267,6 +267,13 @@
     </div>
 </div>
 
+<div class="form-group">
+    <label for="anywhere_location" class="col-sm-2">Can apply from Anywhere?</label>
+    <div class="col-sm-10">
+        <input type="checkbox" name="anywhere_location" id="anywhere_location" >
+    </div>
+</div>
+
 <div class="form-group @error('country') has-error @enderror">
     <label for="country" class="col-sm-2">Country</label>
     <div class="col-sm-10">
