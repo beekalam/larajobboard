@@ -55,4 +55,9 @@ class HomeController extends Controller
         return view('home.select_register');
     }
 
+    public function favorites()
+    {
+       return view('home.favorites'); 
+    }
+
 }

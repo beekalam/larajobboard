@@ -14,6 +14,7 @@ Route::resource('/jobs', 'JobController');
 
 Route::post('/jobs/{job}/favorite', 'FavoriteController@favorite');
 Route::delete('/jobs/{job}/unfavorite', 'FavoriteController@unfavorite');
+Route::get('/jobs-favorited','HomeController@favorites');
 
 Route::get('/posted', 'JobController@posted');
 Route::get('/jobs/{job}/apply','JobApplyController@show');
@@ -54,6 +55,3 @@ Route::delete('/posts/{post}','BlogController@destroy');
 
 Route::get('/blog','FrontBlogController@index');
 Route::get('/blog/{post}','FrontBlogController@Post');
-
-
-
