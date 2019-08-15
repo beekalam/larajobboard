@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 use App\Job;
-use Illuminate\Support\ServiceProvider;
+use App\Page;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -16,7 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        \View::composer('*', function ($view) {
+            $view->with('header_pages', Page::headerPages()->get());
+            $view->with('footer_pages', Page::footerPages()->get());
+        });
     }
 
     /**

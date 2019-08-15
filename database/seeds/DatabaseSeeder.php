@@ -39,9 +39,18 @@ class DatabaseSeeder extends Seeder
         $this->call(CountryTableSeeder::class);
         $this->call(StateTableSeeder::class);
         factory(Page::class)->create([
-            'title'     => 'About us',
-            'content'   => 'About us content',
-            'page_type' => 'static_page'
+            'title'               => 'About us',
+            'content'             => 'About us content',
+            'page_type'           => 'static_page',
+            'show_in_header_menu' => 1,
+            'show_in_footer_menu' => 1,
+        ]);
+        factory(Page::class)->create([
+            'title'               => 'Contact us',
+            'content'             => 'Contact us content',
+            'page_type'           => 'static_page',
+            'show_in_header_menu' => 1,
+            'show_in_footer_menu' => 1,
         ]);
         factory(Page::class)->create([
             'title'     => 'Terms & Conditions',
@@ -49,15 +58,15 @@ class DatabaseSeeder extends Seeder
             'page_type' => 'static_page',
         ]);
 
-        foreach(range(1,20) as $i){
+        foreach (range(1, 20) as $i) {
             factory(Page::class)->create([
                 'page_type'     => 'blog_post',
-                'feature_image' => 'feature_image_'. random_int(1,3) .'.jpg',
+                'feature_image' => 'feature_image_' . random_int(1, 3) . '.jpg',
             ]);
         }
 
         // factory(Page::class,20)->create([
-            // 'page_type' => 'blog_post'
+        // 'page_type' => 'blog_post'
         // ]);
         factory(\App\Job::class, 300)->create();
     }

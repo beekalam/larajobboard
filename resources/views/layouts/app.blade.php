@@ -31,9 +31,9 @@
     <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
+    {{--    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>--}}
     <script src="{{ asset('js/custom.js' . "?id=" . uniqid(true)) }}"></script>
-    {{--    <script src="{{ asset('js/app.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/app.js') }}"></script>--}}
 
 <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -151,8 +151,9 @@
                     <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                         <li><a href="/" class="nav-link active">Home</a></li>
                         <li><a href="/search">Job Listings</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
+                        @foreach($header_pages as $page)
+                            <li><a href="about.html">{{ ucfirst($page->title) }}</a></li>
+                        @endforeach
                         <li><a href="/blog">Blog</a></li>
                         @guest
                             <li><a href="/select-register">Register</a></li>
@@ -197,10 +198,10 @@
                 <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <h3>Company</h3>
                     <ul class="list-unstyled">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Career</a></li>
+                        @foreach($footer_pages as $page)
+                            <li><a href="#">{{ ucfirst($page->title) }}</a></li>
+                        @endforeach
                         <li><a href="#">Blog</a></li>
-                        <li><a href="#">Resources</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3 mb-4 mb-md-0">

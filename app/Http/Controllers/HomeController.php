@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Country;
 use App\Job;
+use App\Page;
 use App\User;
 
 class HomeController extends Controller
