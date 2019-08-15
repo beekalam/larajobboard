@@ -29,7 +29,13 @@ class Job extends Model
 
     public function getMinMaxSalaryAttribute()
     {
-        return sprintf("%s %s - %s %s", $this->currency, $this->salary, $this->currency, $this->salary_max);
+        $currency = "$";
+        if(strtolower($this->currency) == 'eur')
+        {
+            $currency = '€';
+        }
+
+        return sprintf("%s %s - %s %s", $currency, $this->salary, $currency, $this->salary_max);
     }
 
     public static function filter($params)

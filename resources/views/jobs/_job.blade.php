@@ -27,6 +27,6 @@
     </div>
 
     <div class="col-md-3 text-md-right">
-        <strong class="text-black">${{ number_format($job->salary)}}-${{ number_format($job->salary_max) }}</strong>
+        <strong class="text-black">{{ $job->min_max_salary }}</strong>
     </div>
 </div>
