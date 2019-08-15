@@ -32,8 +32,10 @@ class PageController extends Controller
     private function rules()
     {
         return [
-            'title'   => 'required',
-            'content' => 'required'
+            'title'               => 'required',
+            'content'             => 'required',
+            'show_in_footer_menu' => 'nullable',
+            'show_in_header_menu' => 'nullable'
         ];
     }
 
@@ -43,9 +45,11 @@ class PageController extends Controller
         $this->validate($request, $this->rules());
 
         Page::create([
-            'title'     => request('title'),
-            'content'   => request('content'),
-            'page_type' => 'static_page'
+            'title'               => request('title'),
+            'content'             => request('content'),
+            'page_type'           => 'static_page',
+            'show_in_footer_menu' => is_null(request('show_in_footer_menu')) ? 0 : 1,
+            'show_in_header_menu' => is_null(request('show_in_header_menu')) ? 0 : 1
         ]);
         return redirect('/pages')->with('success', 'Page created successfully.');
     }
@@ -59,8 +63,10 @@ class PageController extends Controller
     public function update(Page $page, Request $request)
     {
         $this->authorize('update', $page);
-        $this->validate($request, $this->rules());
-        $page->update($request->all());
+        $fields = $this->validate($request, $this->rules());
+        $fields['show_in_header_menu'] = $fields['show_in_header_menu'] == 'on' ? 1 : 0;
+        $fields['show_in_footer_menu'] = $fields['show_in_footer_menu'] == 'on' ? 1 : 0;
+        $page->update($fields);
         return redirect('/pages')->with('success', 'Page created successfully');
     }
 
@@ -70,6 +76,5 @@ class PageController extends Controller
         $page->delete();
         return redirect('/pages')->with('success', 'Page deleted successfully.');
     }
-
 
 }
