@@ -30,8 +30,7 @@ class Job extends Model
     public function getMinMaxSalaryAttribute()
     {
         $currency = "$";
-        if(strtolower($this->currency) == 'eur')
-        {
+        if (strtolower($this->currency) == 'eur') {
             $currency = '€';
         }
 
@@ -54,9 +53,9 @@ class Job extends Model
         }
 
         if (isset($params['country_name']) && !empty($params['country_name'])) {
-            if(strtolower($params['country_name']) == 'anywhere'){
-                $jobs = $jobs->where('anywhere_location','1');
-            }else {
+            if (strtolower($params['country_name']) == 'anywhere') {
+                $jobs = $jobs->where('anywhere_location', '1');
+            } else {
                 $jobs = $jobs->orWhere('country_name', 'like', $params['country_name']);
 
                 $country = Country::where('country_name', 'like', '%' . $params['country_name'] . '%')->first();
@@ -145,6 +144,17 @@ class Job extends Model
         return Cache::remember('posted_jobs', now()->addMinute(2), function () {
             return Job::where('status', 1)->count();
         });
+    }
+
+    public function applied()
+    {
+        if (\Auth::user())
+            return JobApplication::where([
+                    'user_id' => auth()->id(),
+                    'job_id'  => $this->id,
+                ])->count() > 0;
+
+        return false;
     }
 
 }

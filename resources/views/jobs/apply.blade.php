@@ -10,14 +10,14 @@
                     <h5 class="modal-title"> Online job application form </h5>
                 </div>
                 <div class="modal-body">
-                    {{ isset($error) ? dump($error) : '' }}              
+                    {{ isset($error) ? dump($error) : '' }}
                     <div class="form-group">
                         <label class="control-label" for="name"> Name: </label>
                         <input class="form-control @error('name') is-invalid @enderror"
                                id="name" name="name" placeholder="Your name" type="text"
                                value="{{ old('name') }}"/>
                         @error('name')
-                            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                         @enderror
                     </div>
 
@@ -40,7 +40,7 @@
                                id="phone_number" name="phone_number" placeholder="Phone Number"
                                type="text" value="{{ old("phone_number") }}"/>
                         @if($errors->has('phone_number'))
-                           <div class="invalid-feedback">{{ $errors->first('phone_number')}} </div>
+                            <div class="invalid-feedback">{{ $errors->first('phone_number')}} </div>
                         @endif
                     </div>
 

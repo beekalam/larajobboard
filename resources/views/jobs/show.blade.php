@@ -49,9 +49,16 @@
                                 @endif
                             </form>
                         </div>
+
                         <div class="col-6">
-                            <a href="/jobs/{{ $job->id }}/apply" class="btn btn-block btn-primary btn-md">Apply Now</a>
+                            @if($job->applied())
+                                <a href="#" class="btn btn-block btn-success btn-md">Already Applied</a>
+                            @else
+                                <a href="/jobs/{{ $job->id }}/apply"
+                                   class="btn btn-block btn-primary btn-md">Apply Now</a>
+                            @endif
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -60,11 +67,11 @@
                 <div class="col-lg-8">
 
                     <div class="mb-5">
-{{--                        <figure class="mb-5">--}}
-{{--                            <img src="/images/sq_img_1.jpg"--}}
-{{--                                 alt=""--}}
-{{--                                 class="img-fluid rounded">--}}
-{{--                        </figure>--}}
+                        {{--                        <figure class="mb-5">--}}
+                        {{--                            <img src="/images/sq_img_1.jpg"--}}
+                        {{--                                 alt=""--}}
+                        {{--                                 class="img-fluid rounded">--}}
+                        {{--                        </figure>--}}
                         <h3 class="h5 d-flex align-items-center mb-4 text-primary">
                             <span class="icon-align-left mr-3"></span>Job Description
                         </h3>

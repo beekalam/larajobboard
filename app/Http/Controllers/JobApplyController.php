@@ -12,7 +12,9 @@ class JobApplyController extends Controller
 {
     public function show(Job $job)
     {
-        return view('jobs.apply', compact("job"));
+        return view('jobs.apply', [
+            'job' => $job,
+        ]);
     }
 
     public function apply(Request $request,Job $job)
@@ -25,7 +27,7 @@ class JobApplyController extends Controller
         ]);
         
         try{
-            $fields['user_id']  = Auth::check() ? auth()->id() : 0;
+            $fields['user_id']  = auth()->id() ?? 0;
             $fields['resume'] = $request->resume->store('resume','public');
             $fields['job_id'] = $job->id;
             $fields['employer_id'] =$job->user_id;
