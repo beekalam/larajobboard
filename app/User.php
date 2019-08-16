@@ -93,6 +93,11 @@ class User extends Authenticatable
         return $this->user_type == 'employer';
     }
 
+    public function isUser()
+    {
+        return $this->user_type == 'user';
+    }
+
     public function favoritedJobs()
     {
          $job_ids = Favorite::where('user_id', auth()->id())->pluck('favorited_id');

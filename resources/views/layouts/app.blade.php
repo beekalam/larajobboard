@@ -159,10 +159,15 @@
                             <li><a href="/select-register">Register</a></li>
                             <li><a href="/login">Login</a></li>
                         @else
-                            @if(auth()->check() && auth()->user()->favoritedJobs()->count())
+                            @php($user = auth()->user())
+                            @if($user && $user->favoritedJobs()->count() && $user->isUser())
                                 <li><a href="/jobs-favorited">Favorites</a></li>
                             @endif
-                            <li><a href="/jobs/create">Post Job</a></li>
+
+                            @if($user && !($user->isUser()))
+                                <li><a href="/jobs/create">Post Job</a></li>
+                            @endif
+
                         @endguest
                         <li class="d-lg-none"><a href="contact.html">Contact Us</a></li>
                     </ul>

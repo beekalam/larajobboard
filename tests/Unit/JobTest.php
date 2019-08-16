@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Job;
+use App\JobApplication;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -25,7 +26,7 @@ class JobTest extends TestCase
     {
         factory(Job::class)->create(['title' => 'test title']);
         $this->assertEquals('test title', Job::filter([
-            'title'    => 'test title'
+            'title' => 'test title'
         ])->first()->title);
     }
 
@@ -41,9 +42,20 @@ class JobTest extends TestCase
     /** @test */
     function can_filter_jobs_based_on_country_name()
     {
-        factory(Job::class)->create([ 'country_name' => 'iran', ]);
+        factory(Job::class)->create(['country_name' => 'iran']);
         $this->assertEquals('iran', Job::filter([
             'country_name' => 'iran'
+        ])->first()->country_name);
+    }
+
+    /** @test */
+    function when_filtering_anywhere_location_should_return_jobs_with_anywhere_location_flag_set()
+    {
+        factory(Job::class)->create(['country_name' => 'iran','anywhere_location' => 0]);
+        factory(Job::class)->create(['country_name' => 'germany','anywhere_location' => 1]);
+
+        $this->assertEquals('germany', Job::filter([
+            'country_name' => 'anywhere'
         ])->first()->country_name);
     }
 
@@ -83,6 +95,16 @@ class JobTest extends TestCase
     function can_filter_jobs_by_position()
     {
         $job = factory(Job::class)->create(['position' => 'php developer']);
-        $this->assertEquals('php developer',Job::filter(['title' => 'php'])->first()->position);
+        $this->assertEquals('php developer', Job::filter(['title' => 'php'])->first()->position);
+    }
+
+    /** @test */
+    function can_determine_if_user_has_already_applied_to_the_job()
+    {
+        $this->withoutExceptionHandling();
+        $this->userSignIn();
+        $job = factory(Job::class)->create(['position' => 'php developer']);
+        factory(JobApplication::class)->create(['user_id' => auth()->id()]);
+        $this->assertTrue($job->applied());
     }
 }

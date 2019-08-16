@@ -45,15 +45,23 @@ class CreatePageTest extends TestCase
     /** @test */
     function authenticated_user_may_update_pages()
     {
+        $this->withoutExceptionHandling();
         $this->adminSignIn();
         $page = factory(Page::class)->create();
         $attrs = [
-            'title'   => 'title changed',
-            'content' => 'content changed'
+            'title'               => 'title changed',
+            'content'             => 'content changed',
+            'show_in_header_menu' => 'on',
+            'show_in_footer_menu' => 'on',
         ];
 
         $this->patch('/pages/' . $page->id, $attrs);
-        $this->assertDatabaseHas('pages', $attrs);
+        $this->assertDatabaseHas('pages', [
+            'title'               => 'title changed',
+            'content'             => 'content changed',
+            'show_in_footer_menu' => 1,
+            'show_in_header_menu' => 1,
+        ]);
     }
 
 }

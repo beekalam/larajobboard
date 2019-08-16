@@ -35,7 +35,7 @@
                                onclick="event.preventDefault();document.getElementById('favorite-form').submit()"
                                class="btn btn-block btn-light btn-md">
                                 @if($job->is_favorited)
-                                    <span class="icon-heart mr-2 text-danger"></span>Save Job
+                                    <span class="icon-heart mr-2 text-danger"></span>Saved
                                 @else
                                     <span class="icon-heart-o mr-2 text-danger"></span>Save Job
                                 @endif
