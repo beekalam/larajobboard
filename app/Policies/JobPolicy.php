@@ -41,7 +41,7 @@ class JobPolicy
      */
     public function create(User $user)
     {
-        //
+       return $user->isAdmin() || $user->isEmployer();
     }
 
     public function changeJobStatus(User $user){
@@ -57,7 +57,7 @@ class JobPolicy
      */
     public function update(User $user, Job $job)
     {
-        return $user->id == $job->user_id;
+        return ($user->id == $job->user_id  && $user->isEmployer()) || $user->isAdmin();
     }
 
     /**

@@ -36,6 +36,7 @@ class JobController extends Controller
 
     public function create()
     {
+        $this->authorize('create', new Job());
         return view('admin.jobs.create', [
             'categories' => category::all(),
             'job'        => new Job(),
@@ -45,6 +46,7 @@ class JobController extends Controller
 
     public function store(JobRequest $request)
     {
+        $this->authorize('update',new Job());
         Job::create([
             'user_id'                   => auth()->id(),
             'title'                     => request('title'),
@@ -81,6 +83,7 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
+        $this->authorize('update',$job);
         return view('admin.jobs.edit', [
             'categories' => category::all(),
             'job'        => $job,
@@ -90,6 +93,8 @@ class JobController extends Controller
 
     public function update(Job $job)
     {
+        $this->update('update',$job);
+
         $this->authorize('update', $job);
         $data = request()->all();
         $data['category_id'] = $data['category'];
