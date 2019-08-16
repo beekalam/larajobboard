@@ -4,6 +4,7 @@
     @include('layouts._overlay')
     <section class="site-section">
         <div class="container">
+
             <div class="row align-items-center mb-5">
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <div class="d-flex align-items-center">
@@ -14,7 +15,7 @@
                             <h2>{{ $job->title }}</h2>
                             <div>
                                 <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>
-                                    Puma
+                                    {{ $job->user->name }}
                                 </span>
                                 <span class="m-2"><span class="icon-room mr-2"></span>
                                     {{ $job->country_name . ' ' . ucfirst($job->city_name)}}
@@ -59,9 +60,11 @@
                 <div class="col-lg-8">
 
                     <div class="mb-5">
-                        <figure class="mb-5"><img src="/images/sq_img_1.jpg"
-                                                  alt=""
-                                                  class="img-fluid rounded"></figure>
+{{--                        <figure class="mb-5">--}}
+{{--                            <img src="/images/sq_img_1.jpg"--}}
+{{--                                 alt=""--}}
+{{--                                 class="img-fluid rounded">--}}
+{{--                        </figure>--}}
                         <h3 class="h5 d-flex align-items-center mb-4 text-primary">
                             <span class="icon-align-left mr-3"></span>Job Description
                         </h3>

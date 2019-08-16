@@ -159,7 +159,7 @@
                             <li><a href="/select-register">Register</a></li>
                             <li><a href="/login">Login</a></li>
                         @else
-                            @if(auth()->user()->favoritedJobs()->count())
+                            @if(auth()->check() && auth()->user()->favoritedJobs()->count())
                                 <li><a href="/jobs-favorited">Favorites</a></li>
                             @endif
                             <li><a href="/jobs/create">Post Job</a></li>

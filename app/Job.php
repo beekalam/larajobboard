@@ -54,11 +54,15 @@ class Job extends Model
         }
 
         if (isset($params['country_name']) && !empty($params['country_name'])) {
-            $jobs = $jobs->orWhere('country_name', 'like', $params['country_name']);
+            if(strtolower($params['country_name']) == 'anywhere'){
+                $jobs = $jobs->where('anywhere_location','1');
+            }else {
+                $jobs = $jobs->orWhere('country_name', 'like', $params['country_name']);
 
-            $country = Country::where('country_name', 'like', '%' . $params['country_name'] . '%')->first();
-            if ($country) {
-                $jobs = $jobs->orWhere('country_id', $country->id);
+                $country = Country::where('country_name', 'like', '%' . $params['country_name'] . '%')->first();
+                if ($country) {
+                    $jobs = $jobs->orWhere('country_id', $country->id);
+                }
             }
         }
         return $jobs;
