@@ -19,7 +19,6 @@ class HomeController extends Controller
         $this->middleware('auth')->only('favorites');
     }
 
-
     /**
      * Show the application dashboard.
      *
@@ -28,12 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home.home', [
-            'categories'     => Category::getAllCategories(),
+            'categories' => Category::getAllCategories(),
             // 'states'         => State::getAllStates(),
-            'countries'      => Country::getAllCountries(),
-            'user_count'     => User::userCount(),
+            'countries' => Country::getAllCountries(),
+            'user_count' => User::userCount(),
             'employer_count' => User::employerCount(),
-            'posted_jobs'    => Job::PostedJobs(),
+            'posted_jobs' => Job::PostedJobs(),
         ]);
     }
 
@@ -47,8 +46,8 @@ class HomeController extends Controller
 
         $jobs->withPath("?title={$title}&job_type={$job_type}&location={$state_name}");
         return view('home.search', [
-            'jobs'        => $jobs,
-            'search_term' => $title
+            'jobs' => $jobs,
+            'search_term' => $title,
         ]);
     }
 
