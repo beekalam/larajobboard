@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Country;
 use App\Job;
-use App\Page;
 use App\User;
 
 class HomeController extends Controller
@@ -20,7 +19,7 @@ class HomeController extends Controller
         $this->middleware('auth')->only('favorites');
     }
 
-         
+
     /**
      * Show the application dashboard.
      *
@@ -47,7 +46,10 @@ class HomeController extends Controller
         $jobs = Job::filter(compact('title', 'job_type', 'country_name'))->paginate(5);
 
         $jobs->withPath("?title={$title}&job_type={$job_type}&location={$state_name}");
-        return view('home.search', compact('jobs'));
+        return view('home.search', [
+            'jobs'        => $jobs,
+            'search_term' => $title
+        ]);
     }
 
     public function register()
@@ -57,7 +59,7 @@ class HomeController extends Controller
 
     public function favorites()
     {
-       return view('home.favorites'); 
+        return view('home.favorites');
     }
 
 }

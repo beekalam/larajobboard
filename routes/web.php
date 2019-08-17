@@ -2,23 +2,22 @@
 
 Auth::routes();
 
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/select-register', 'HomeController@register');
 Route::get('/employer-register', 'UserRegisterController@EmployerRegister');
 Route::get('/job-seeker-register', 'UserRegisterController@JobSeekerRegister');
 
-Route::get('/search', 'HomeController@search');
+Route::get('/search', 'HomeController@search')->name('search');
 
 Route::resource('/jobs', 'JobController');
 
 Route::post('/jobs/{job}/favorite', 'FavoriteController@favorite');
 Route::delete('/jobs/{job}/unfavorite', 'FavoriteController@unfavorite');
-Route::get('/jobs-favorited','HomeController@favorites');
+Route::get('/jobs-favorited', 'HomeController@favorites');
 
 Route::get('/posted', 'JobController@posted');
-Route::get('/jobs/{job}/apply','JobApplyController@show');
-Route::post('/jobs/{job}/apply','JobApplyController@apply');
+Route::get('/jobs/{job}/apply', 'JobApplyController@show');
+Route::post('/jobs/{job}/apply', 'JobApplyController@apply');
 
 Route::resource('/category', 'CategoryController');
 Route::get('/cat/{category}', 'JobCategoryController@show');
@@ -40,18 +39,19 @@ Route::post('/admin/jobs/{job}/block', 'AdminJobController@Block');
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/pages', 'PageController@index');
-Route::get('/pages/create','PageController@create');
-Route::post('/pages','PageController@store');
-Route::get('/pages/{page}/edit','PageController@edit');
-Route::patch('/pages/{page}','PageController@update');
-Route::delete('/pages/{page}','PageController@destroy');
+Route::get('/pages/create', 'PageController@create');
+Route::post('/pages', 'PageController@store');
+Route::get('/pages/{page}/edit', 'PageController@edit');
+Route::patch('/pages/{page}', 'PageController@update');
+Route::delete('/pages/{page}', 'PageController@destroy');
 
 Route::get('/posts', 'BlogController@index');
-Route::get('/posts/create','BlogController@create');
-Route::post('/posts','BlogController@store');
-Route::get('/posts/{post}/edit','BlogController@edit');
-Route::patch('/posts/{post}','BlogController@update');
-Route::delete('/posts/{post}','BlogController@destroy');
+Route::get('/posts/create', 'BlogController@create');
+Route::post('/posts', 'BlogController@store');
+Route::get('/posts/{post}/edit', 'BlogController@edit');
+Route::patch('/posts/{post}', 'BlogController@update');
+Route::delete('/posts/{post}', 'BlogController@destroy');
 
-Route::get('/blog','FrontBlogController@index');
-Route::get('/blog/{post}','FrontBlogController@Post');
+Route::get('/blog', 'FrontBlogController@index');
+Route::get('/blog/{post}', 'FrontBlogController@Post');
+Route::get('/page/{page}', 'StaticPageController@show')->name('static-page');

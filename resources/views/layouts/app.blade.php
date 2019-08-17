@@ -152,7 +152,7 @@
                         <li><a href="/" class="nav-link active">Home</a></li>
                         <li><a href="/search">Job Listings</a></li>
                         @foreach($header_pages as $page)
-                            <li><a href="about.html">{{ ucfirst($page->title) }}</a></li>
+                            <li><a href="{{ route('static-page',$page) }}">{{ ucfirst($page->title) }}</a></li>
                         @endforeach
                         <li><a href="/blog">Blog</a></li>
                         @guest
@@ -161,7 +161,7 @@
                         @else
                             @php($user = auth()->user())
                             @if($user && $user->favoritedJobs()->count() && $user->isUser())
-                                <li><a href="/jobs-favorited">Favorites</a></li>
+                                <li><a href="/jobs-favorited">Saved Jobs</a></li>
                             @endif
 
                             @if($user && !($user->isUser()))
@@ -195,12 +195,30 @@
                 <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <h3>Search Trending</h3>
                     <ul class="list-unstyled">
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Graphic Design</a></li>
-                        <li><a href="#">Web Developers</a></li>
-                        <li><a href="#">Python</a></li>
-                        <li><a href="#">HTML5</a></li>
-                        <li><a href="#">CSS3</a></li>
+                        <li>
+                            <a href="{{ route('search',http_build_query(['search_term' =>'web design'])) }}">Web
+                                Design
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('search',http_build_query(['search_term' => 'graphic design'])) }}">Graphic
+                                Design
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('search',http_build_query(['search_term' => 'web developer'])) }}">Web
+                                Developers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('search',http_build_query(['search_term' => 'python'])) }}">Python</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('search',http_build_query(['search_term' => 'html5'])) }}">HTML5</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('search',http_build_query(['search_term' => 'css3'])) }}">CSS3</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3 mb-4 mb-md-0">
