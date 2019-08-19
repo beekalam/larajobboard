@@ -39,7 +39,8 @@ class Job extends Model
 
     public static function filter($params)
     {
-        $jobs = Job::latest();
+        $jobs = Job::latest()->where('deadline','>=',now());
+
         if (isset($params['job_type']) && !empty($params['job_type'])) {
             $jobs = $jobs->where('job_type', '=', $params['job_type']);
         }
@@ -64,6 +65,7 @@ class Job extends Model
                 }
             }
         }
+
         return $jobs;
     }
 

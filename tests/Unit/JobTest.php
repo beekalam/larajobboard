@@ -51,8 +51,8 @@ class JobTest extends TestCase
     /** @test */
     function when_filtering_anywhere_location_should_return_jobs_with_anywhere_location_flag_set()
     {
-        factory(Job::class)->create(['country_name' => 'iran','anywhere_location' => 0]);
-        factory(Job::class)->create(['country_name' => 'germany','anywhere_location' => 1]);
+        factory(Job::class)->create(['country_name' => 'iran', 'anywhere_location' => 0]);
+        factory(Job::class)->create(['country_name' => 'germany', 'anywhere_location' => 1]);
 
         $this->assertEquals('germany', Job::filter([
             'country_name' => 'anywhere'
@@ -106,5 +106,23 @@ class JobTest extends TestCase
         $job = factory(Job::class)->create(['position' => 'php developer']);
         factory(JobApplication::class)->create(['user_id' => auth()->id()]);
         $this->assertTrue($job->applied());
+    }
+
+    /** @test */
+    function should_not_return_jobs_with_passed_deadline()
+    {
+        $job = factory(Job::class)->create(['title' => 'test', 'deadline' => now()->addDay(-10)]);
+        $this->assertEquals(0, Job::filter([
+            'title' => 'test'
+        ])->count());
+    }
+
+    /** @test */
+    function should_return_jobs_with_deadlines_not_passed_yet()
+    {
+        $job = factory(Job::class)->create(['title' => 'test', 'deadline' => now()->addDay(10)]);
+        $this->assertEquals(1, Job::filter([
+            'title' => 'test'
+        ])->count());
     }
 }
