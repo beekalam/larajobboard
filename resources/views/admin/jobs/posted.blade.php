@@ -14,31 +14,45 @@
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Title</th>
-                            <th>Status</th>
                             <th>Employer</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                         @foreach($jobs as $job)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $job->title }}</td>
-                                <td>{{ $job->status }}</td>
-                                <td></td>
+                                <td>{{ $job->user->name }}</td>
+                                <td>
+                                    @if($job->isApproved())
+                                        <button type="submit" class="btn btn-success">
+                                            <i data-toggle="tooltip" title="Approved" class="fa fa-check"></i>
+                                        </button>
+                                    @endif
+
+                                    @if($job->isPending())
+                                        <span type="submit" class="btn btn-warning">
+                                            <i data-toggle="tooltip" title="pending Activation" class="fa fa-hourglass-half"></i>
+                                        </span>
+                                    @endif
+                                </td>
+
                                 <td>
                                     <a href="/jobs/{{ $job->id }}/edit"
                                        class="btn btn-primary">
                                         <i data-toggle="tooltip" title="Edit" class="fa fa-edit"></i>
                                     </a>
 
-
-                                    <form action="/jobs/{{ $job->id }}" method="post" style="display:inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button href="/jobs/{{ $job->id }}" type="submit"
-                                                class="btn btn-danger">
-                                            <i data-toggle="tooltip" title="Delete" class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    @can('delete',$job)
+                                        <form action="/jobs/{{ $job->id }}" method="post" style="display:inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button href="/jobs/{{ $job->id }}" type="submit"
+                                                    class="btn btn-danger">
+                                                <i data-toggle="tooltip" title="Delete" class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
