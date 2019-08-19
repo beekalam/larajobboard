@@ -11,7 +11,7 @@ class State extends Model
 
     public static function getAllStates()
     {
-        return Cache::remember('states', now()->addMinute(2), function () {
+        return Cache::remember('states', config('app.ttl'), function () {
             return State::all();
         });
     }

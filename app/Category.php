@@ -22,7 +22,7 @@ class Category extends Model
 
     public static function getAllCategories()
     {
-        return Cache::remember('all_categories', now()->addMinute(2), function () {
+        return Cache::remember('all_categories', config('app.ttl'), function () {
             return Category::all();
         });
     }

@@ -141,7 +141,7 @@ class Job extends Model
 
     public static function PostedJobs()
     {
-        return Cache::remember('posted_jobs', now()->addMinute(2), function () {
+        return Cache::remember('posted_jobs', config('app.ttl'), function () {
             return Job::where('status', 1)->count();
         });
     }

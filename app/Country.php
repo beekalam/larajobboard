@@ -15,7 +15,7 @@ class Country extends Model
 
     public static function getAllCountries()
     {
-        return Cache::remember('countries', now()->addMinute(2), function () {
+        return Cache::remember('countries', config('app.ttl'), function () {
             return Country::all();
         });
     }

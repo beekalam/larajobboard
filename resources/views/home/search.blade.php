@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
-                    <h2 class="section-title mb-2">{{ $jobs->count() }} Jobs found  {{ empty($search_term) ? "": "for " . $search_term }}</h2>
+                    <h2 class="section-title mb-2">{{ $jobs->total() }} Jobs found  {{ empty($search_term) ? "": "for " . $search_term }}</h2>
                 </div>
             </div>
 

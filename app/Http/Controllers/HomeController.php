@@ -43,7 +43,7 @@ class HomeController extends Controller
         $state_name = request('location');
         $country_name = request('location');
         $jobs = Job::filter(compact('title', 'job_type', 'country_name'))->paginate(5);
-
+// dd($jobs->toArray());
         $jobs->withPath("?title={$title}&job_type={$job_type}&location={$state_name}");
         return view('home.search', [
             'jobs' => $jobs,

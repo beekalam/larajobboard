@@ -71,14 +71,14 @@ class User extends Authenticatable
 
     public static function userCount()
     {
-        return Cache::remember('employer_count', now()->addMinute(2), function () {
+        return Cache::remember('employer_count', config('app.ttl'), function () {
             return User::where('user_type', 'user')->count();
         });
     }
 
     public static function employerCount()
     {
-        return Cache::remember('user_count', now()->addMinute(2), function () {
+        return Cache::remember('user_count', config('app.ttl'), function () {
             return User::where('user_type', 'employer')->count();
         });
     }
