@@ -15,19 +15,20 @@ class CreateJobTest extends TestCase
     /** @test */
     function authenticated_users_may_post_jobs()
     {
-        $this->signIn(['user_type' => 'admin']);
+        $this->adminSignIn();
 
         $category = factory(Category::class)->create();
         $job = factory(Job::class)->make(['category_id' => $category->id, 'title' => 'test title']);
         $job['category'] = $job['category_id'];
-        $this->post('/jobs', $job->toArray());
+        $this->post('/jobs', $job->toArray())
+             ->assertRedirect('/posted');
         $this->assertDatabaseHas('jobs', ['title' => 'test title']);
     }
 
     /** @test */
     function authenticated_users_may_edit_jobs()
     {
-        $user = $this->signIn();
+        $user = $this->employerSignIn();
         $category = factory(Category::class)->create();
         $job = factory(Job::class)->create(['category_id' => $category->id, 'title' => 'test title']);
         $arr = $job->toArray();
@@ -85,6 +86,19 @@ class CreateJobTest extends TestCase
     }
 
     /** @test */
+    function authorized_employer_may_view_his_jobs_only()
+    {
+        $user = factory(User::class)->create(['user_type' => 'admin']);
+        $first_job = factory(Job::class)->create(['title' => 'first_job', 'user_id' => $user->id]);
+        $employer = $this->employerSignIn();
+        $second_job = factory(Job::class)->create(['title' => 'second_job', 'user_id' => $employer->id]);
+
+        $this->get('/posted')
+             ->assertSee($second_job->title)
+             ->assertDontSee($first_job->title);
+    }
+
+    /** @test */
     function authorized_user_may_create_jobs_with_anywhere_flag()
     {
         $this->withoutExceptionHandling();
@@ -92,8 +106,9 @@ class CreateJobTest extends TestCase
         $job = factory(Job::class)->make(['anywhere_location' => '1']);
         $job['category'] = $job['category_id'];
         $this->post('/jobs', $job->toArray())
-            ->assertRedirect('/jobs');
+             ->assertRedirect('/posted');
         $this->assertDatabaseHas('jobs', ['anywhere_location' => 1]);
     }
+
 
 }
