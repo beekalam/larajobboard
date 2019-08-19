@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
 
     private function testSeeder()
     {
-
         $faker = Faker\Factory::create();
         $this->createUsers();
         $this->createStaticPages();
@@ -41,6 +40,10 @@ class DatabaseSeeder extends Seeder
 
         factory(\App\Job::class, 5)->create([
             'user_id' => User::where('email', 'employer@demo.com')->first()->id
+        ]);
+
+        factory(\App\JobApplication::class, 2)->create([
+            'employer_id' => User::where('email', 'employer@demo.com')->first()->id
         ]);
     }
 

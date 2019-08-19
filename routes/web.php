@@ -51,6 +51,7 @@ Route::post('/posts', 'BlogController@store');
 Route::get('/posts/{post}/edit', 'BlogController@edit');
 Route::patch('/posts/{post}', 'BlogController@update');
 Route::delete('/posts/{post}', 'BlogController@destroy');
+Route::get('applicants','JobApplicantController@index');
 
 Route::get('/blog', 'FrontBlogController@index');
 Route::get('/blog/{post}', 'FrontBlogController@Post');

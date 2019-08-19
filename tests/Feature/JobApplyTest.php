@@ -3,12 +3,12 @@
 namespace Tests\Unit;
 
 use App\Job;
+use App\JobApplication;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-use App\JobApplication;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 class JobApplyTest extends TestCase
 {
@@ -45,7 +45,7 @@ class JobApplyTest extends TestCase
             'name'         => 'john smith',
             'email'        => 'john@demo.com',
             'phone_number' => '1234',
-            'resume'       => UploadedFile::fake()->create('resume.pdf')        
+            'resume'       => UploadedFile::fake()->create('resume.pdf')
         ]);
         $this->assertDatabaseHas('job_applications', [
             'name'         => 'john smith',
@@ -63,13 +63,31 @@ class JobApplyTest extends TestCase
             'name'         => 'john smith',
             'email'        => 'john@demo.com',
             'phone_number' => '1234',
-            'resume'       => UploadedFile::fake()->create('resume.pdf')        
+            'resume'       => UploadedFile::fake()->create('resume.pdf')
         ]);
 
         Storage::disk('public')->assertExists(JobApplication::first()->resume);
     }
 
-    private function create_job(){
+    /** @test */
+    function employer_can_view_applicants()
+    {
+        $employer = $this->employerSignIn();
+        factory(Job::class)->create(['title' => 'my_job', 'user_id' => $employer->id]);
+        $user = factory(User::class)->create(['name' => 'john doe']);
+        $user2 = factory(User::class)->create();
+        factory(JobApplication::class)->create([
+            'employer_id' => $employer->id,
+            'user_id'     => $user->id
+        ]);
+        factory(Job::class)->create(['title' => 'another_job', 'user_id' => $user2->id]);
+        $this->get('applicants')
+             ->assertSee($user->name)
+             ->assertDontSee($user2->name);
+    }
+
+    private function create_job()
+    {
         $employer = factory(User::class)->create(['user_type' => 'employer']);
         return factory(Job::class)->create(['user_id' => $employer->id]);
     }

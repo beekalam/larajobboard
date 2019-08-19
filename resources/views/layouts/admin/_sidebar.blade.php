@@ -35,7 +35,8 @@
                     <ul class="treeview-menu">
                         <li><a href="/jobs/create">Post a job</a></li>
                         <li><a href="/posted">Posted Jobs</a></li>
-                        <li><a href="/profile/{{ auth()->id() }}">Profile</a></li>
+                        <li><a href="/applicants">Applicants</a></li>
+                        {{-- <li><a href="/profile/{{ auth()->id() }}">Profile</a></li> --}}
                     </ul>
                 </li>
             @endif

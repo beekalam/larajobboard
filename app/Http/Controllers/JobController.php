@@ -105,14 +105,14 @@ class JobController extends Controller
         unset($data['country']);
         unset($data['state']);
         $job->update($data);
-        return redirect('/posted');
+        return redirect('/posted')->with('success','Job successfully updated.');
     }
 
     public function destroy(Job $job)
     {
         $this->authorize('delete', $job);
         $job->delete();
-        return redirect("/posted");
+        return redirect("/posted")->with('success','Job successfully deleted.');
     }
 
     public function posted()
