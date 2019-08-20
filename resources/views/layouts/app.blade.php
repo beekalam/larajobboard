@@ -192,35 +192,35 @@
 
         <div class="container">
             <div class="row mb-5">
-                <div class="col-6 col-md-3 mb-4 mb-md-0">
-                    <h3>Search Trending</h3>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="{{ route('search',http_build_query(['search_term' =>'web design'])) }}">Web
-                                Design
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('search',http_build_query(['search_term' => 'graphic design'])) }}">Graphic
-                                Design
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('search',http_build_query(['search_term' => 'web developer'])) }}">Web
-                                Developers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('search',http_build_query(['search_term' => 'python'])) }}">Python</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('search',http_build_query(['search_term' => 'html5'])) }}">HTML5</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('search',http_build_query(['search_term' => 'css3'])) }}">CSS3</a>
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="col-6 col-md-3 mb-4 mb-md-0">--}}
+{{--                    <h3>Search Trending</h3>--}}
+{{--                    <ul class="list-unstyled">--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('search',http_build_query(['search_term' =>'web design'])) }}">Web--}}
+{{--                                Design--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('search',http_build_query(['search_term' => 'graphic design'])) }}">Graphic--}}
+{{--                                Design--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('search',http_build_query(['search_term' => 'web developer'])) }}">Web--}}
+{{--                                Developers--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('search',http_build_query(['search_term' => 'python'])) }}">Python</a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('search',http_build_query(['search_term' => 'html5'])) }}">HTML5</a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('search',http_build_query(['search_term' => 'css3'])) }}">CSS3</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
                 <div class="col-6 col-md-3 mb-4 mb-md-0">
                     <h3>Company</h3>
                     <ul class="list-unstyled">

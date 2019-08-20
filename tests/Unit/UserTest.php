@@ -2,9 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\JobApplication;
 use App\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -41,5 +42,13 @@ class UserTest extends TestCase
         $this->signIn(['user_type' => 'employer']);
         $this->assertFalse(auth()->user()->isAdmin());
         $this->assertTrue(auth()->user()->isEmployer());
+    }
+
+    /** @test */
+    function can_get_applied_to_jobs()
+    {
+        $user = factory(User::class)->create(['user_type' => 'user']);
+        factory(JobApplication::class)->create(['user_id' => $user->id]);
+        $this->assertEquals(1, $user->appliedJobs->count());
     }
 }

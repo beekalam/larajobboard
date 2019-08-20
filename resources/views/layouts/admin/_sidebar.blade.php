@@ -19,9 +19,16 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            @if(!auth()->user()->isUser())
+                <li class="active"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            @endif
+
             @if(auth()->user()->isAdmin())
                 <li class="active"><a href="/category"><i class="fa fa-server"></i> <span>Categories</span></a></li>
+            @endif
+
+            @if(auth()->user()->isUser())
+                <li class="active"><a href="/applied"><i class="fa fa-server"></i> <span>Applied</span></a></li>
             @endif
 
             @if(auth()->user()->isAdmin() || auth()->user()->isEmployer())

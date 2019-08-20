@@ -104,4 +104,9 @@ class User extends Authenticatable
          return Job::whereIn('id',$job_ids)->get();
     }
 
+    public function appliedJobs()
+    {
+       return $this->hasMany(JobApplication::class);
+    }
+
 }

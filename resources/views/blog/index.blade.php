@@ -17,8 +17,9 @@
                         </a>
 
                         <h3><a href="/blog/{{ $post->id }}" class="text-black">{{ $post->title }}</a></h3>
-                        <div>{{ $post->created_at->format('Y-m-d') }} <span class="mx-2">|</span> <a href="#">2
-                                Comments</a></div>
+                        <div>{{ $post->created_at->format('Y-m-d') }}
+{{--                            <span class="mx-2">|</span> <a href="#">2 Comments</a>--}}
+                        </div>
                     </div>
                 @endforeach
 

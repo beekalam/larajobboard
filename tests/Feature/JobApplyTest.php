@@ -86,10 +86,21 @@ class JobApplyTest extends TestCase
              ->assertDontSee($user2->name);
     }
 
+    /** @test */
+    function users_can_view_jobs_they_applied_to()
+    {
+        $user = $this->userSignIn();
+        factory(JobApplication::class)->create(['user_id' => auth()->id()]);
+        $this->get('/applied')
+             ->assertSee($user->name)
+             ->assertSee($user->phone);
+    }
+
     private function create_job()
     {
         $employer = factory(User::class)->create(['user_type' => 'employer']);
         return factory(Job::class)->create(['user_id' => $employer->id]);
     }
+
 
 }

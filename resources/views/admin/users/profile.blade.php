@@ -14,35 +14,38 @@
                           method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label for="company" class="col-sm-2">Company</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="company" id="company"
-                                       value="{{ $user->company }}"
-                                       disabled="disabled"
-                                       placeholder="Company" class="form-control">
-                            </div>
-                        </div>
 
-                        <div class="form-group @error('company_size') has-error @enderror">
-                            <label for="company_size" class="col-sm-2">Company size</label>
-                            <div class="col-sm-10">
-                                <select name="company_size" id="company_size" class="form-control ">
-                                    <option value="">Select company size</option>
-                                    <option value="1-100">1-10</option>
-                                    <option value="11-50">11-50</option>
-                                    <option value="51-200">51-200</option>
-                                    <option value="201-500">201-500</option>
-                                    <option value="501-1000">501-1000</option>
-                                    <option value="1001-5000">1001-5000</option>
-                                    <option value="50001-10000">5001-10,000</option>
-                                    <option value="100001+">10,001+</option>
-                                </select>
-                                @if($errors->has('company_size'))
-                                    <span class='help-block'>{{ $errors->first('company_size') }}</span>
-                                @endif
+                        @if(!auth()->user()->isUser())
+                            <div class="form-group">
+                                <label for="company" class="col-sm-2">Company</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="company" id="company"
+                                           value="{{ $user->company }}"
+                                           disabled="disabled"
+                                           placeholder="Company" class="form-control">
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="form-group @error('company_size') has-error @enderror">
+                                <label for="company_size" class="col-sm-2">Company size</label>
+                                <div class="col-sm-10">
+                                    <select name="company_size" id="company_size" class="form-control ">
+                                        <option value="">Select company size</option>
+                                        <option value="1-100">1-10</option>
+                                        <option value="11-50">11-50</option>
+                                        <option value="51-200">51-200</option>
+                                        <option value="201-500">201-500</option>
+                                        <option value="501-1000">501-1000</option>
+                                        <option value="1001-5000">1001-5000</option>
+                                        <option value="50001-10000">5001-10,000</option>
+                                        <option value="100001+">10,001+</option>
+                                    </select>
+                                    @if($errors->has('company_size'))
+                                        <span class='help-block'>{{ $errors->first('company_size') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="form-group @error('country') has-error @enderror">
                             <label for="country" class="col-sm-2">Country</label>
@@ -128,16 +131,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group @error('about_company') has-error @enderror">
-                            <label for="about_company" class="col-sm-2">About company</label>
-                            <div class="col-sm-10">
+                        @if(!auth()->user()->isUser())
+                            <div class="form-group @error('about_company') has-error @enderror">
+                                <label for="about_company" class="col-sm-2">About company</label>
+                                <div class="col-sm-10">
                              <textarea name="about_company" id="about_company" cols="30" rows="3"
                                        class="form-control">{{ old('about_company',$user->about_company) }}</textarea>
-                                @if($errors->has('about_company'))
-                                    <span class='help-block'>{{ $errors->first('about_company') }}</span>
-                                @endif
+                                    @if($errors->has('about_company'))
+                                        <span class='help-block'>{{ $errors->first('about_company') }}</span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="form-group @error('website') has-error @enderror">
                             <label for="website" class="col-sm-2">Website</label>
@@ -151,6 +156,7 @@
                             </div>
                         </div>
 
+                        @if(!auth()->user()->isUser())
                         <div class="form-group">
                             <label for="logo" class="col-sm-2">Logo</label>
                             <div class="col-sm-10">
@@ -161,6 +167,7 @@
                                 <input type="file" name="logo" id="log" class="form-control">
                             </div>
                         </div>
+                        @endif
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-info pull-right">Update Profile</button>
