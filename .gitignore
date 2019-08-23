@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /.idea
+sftp-json.json
 .env
 .env.backup
 .phpunit.result.cache

@@ -4,6 +4,7 @@ LaraJobBoard is a job board application currently under development.
 
 [larajobboard](http://larajobboard.m-mansouri.ir)
 
+
 - admin login
 user : admin@demo.com
 pass : secret
